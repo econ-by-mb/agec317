@@ -1,0 +1,613 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Statistics Review}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain, noframenumbering]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistics}
+Why should you care about statistics?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistics}
+Consider the following scenario: \\
+You own a butcher shop, and you can purchase one of two machines that make hamburger patties:
+\begin{itemize}
+	\item Machine A: 1600 patties/hour $\pm$ 200, with each patty at 4oz., $\pm$ 0.03oz.
+	\item Machine B: 1550 patties/hour $\pm$ 25, with each patty at 4oz., $\pm$ 0.01oz.
+\end{itemize}
+Which machine should you purchase?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistics}
+Your professional life will be \textbf{full} of decisions like this, where money is often on the line. How do you make your decision?
+\begin{itemize}
+	\item Ask your friends?
+	\item Read customer reviews?
+	\item The cheapest sticker price?
+\end{itemize}
+The real world is messy and uncertain. Statistics and mathematics allow us to make informed rational decisions in the face of uncertainty.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistics}
+With statistics, we can
+\begin{itemize}
+	\item Present and describe data
+	\item Estimate functions (demand, production, cost equations, etc)
+	\item Make inferences about a population using a random sample
+	\item Forecast
+	\item ...and much more
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+We start with \emph{data}. Without data, the modern economist is increasingly obsolete. It is a valuable asset, and to navigate your future job you will need to know how to correctly handle data. \\
+Let's start with some key definitions.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+\begin{itemize}
+	\item \textbf{Population}: the broad collection of units (people) that we make inferences about. It is almost always the case that we can't observe the entire population, hence the need for statistics!
+	\item \textbf{Sample}: a subset of the population on whom we perform statistical analysis.
+\end{itemize}
+\emph{Ex.: We often infer the percent of Americans who support/don't support a political figure. What is the statistical population? How would you gather the sample?}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+\begin{itemize}
+	\item \textbf{Variable}: a symbolic number that can take many different values (get it? \emph{vari-}able?) 
+\end{itemize}
+\emph{Ex.:}
+$$y = 4x+6$$
+\emph{What are the variables of the function?}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+\begin{itemize}
+	\item \textbf{Parameter} (or \textbf{coefficient}): A number in front of a variable, that defines the behavior of that variable on the overall function. 
+\end{itemize}
+\emph{Ex.:}
+$$y = 4x+6$$
+\emph{What are the parameters (coefficients) of the function? What do they mean?}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+\begin{itemize}
+	\item \textbf{Random}: We say something is random when it exhibits some unpredictable or messy or imperfect pattern. Variables are often random because they can take many values and their exact value is not always predictable. However, even random events follow some probability distribution.
+\end{itemize}
+\emph{Ex.: Next time you cook with eggs, throw one on the ground as hard as you can. The gooey mess will make a different pattern on your floor every time you do this. Random pattern, right? Yes, but the probability of egg getting on your floor is much higher than the probability of egg getting on your ceiling. Even though the event is random, there is still some probability distribution governing the event.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+Data is often organized as a matrix. The columns are variables, the rows are observations.
+\begin{center}
+	\includegraphics[scale=0.5]{carat.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+Variables come in different flavors
+\begin{itemize}
+	\item Categorical: numbers (often 0 and 1) that indicate categories, like race and gender
+	\item Numerical
+		\begin{itemize}
+			\item Discrete: numbers that are usually integers (whole) that have meaning, like the number of pets you have
+			\item Continuous: numbers that can take any value, like the amount of oil from a well (18.902374923847... bbl/day)
+		\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+Where do we get data? \\
+Classic Sources:
+\begin{itemize}
+	\item \href{https://www.nass.usda.gov/Quick_Stats/}{USDA NASS Quick Stats}
+	\item \href{https://www.ers.usda.gov/data-products/}{USDA Economic Research Service}
+	\item \href{https://fred.stlouisfed.org/}{Federal Reserve Economic Data}
+	\item \href{https://www.bea.gov/data}{Bureau of Economic Analysis}
+\end{itemize}
+Evolving Sources:
+\begin{itemize}
+	\item \href{https://www.reddit.com/r/datasets/}{Reddit: Datasets}
+	\item \href{https://data.fivethirtyeight.com/}{FiveThirtyEight}
+	\item \href{https://www.kaggle.com/datasets}{Kaggle}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+...but data is everywhere. The hunt for data to answer a question is often a very important and time consuming part of any project.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data}
+Broad types of data:
+\begin{itemize}
+	\item Primary data: you collect yourself
+	\item Secondary data: someone else collected for you
+\end{itemize}
+Broad ways to collect data:
+\begin{itemize}
+	\item Experiment
+	\item Survey
+	\item Observe
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Descriptive statistics}
+Once we find data, we want to describe and present key information. \emph{Communication} will be a very important part of your job. The most advanced analysis in the world is meaningless if it is not communicated properly.
+\begin{itemize}
+	\item Tables
+	\item Figures
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important notation}
+Recall our definition of \textbf{random} and \textbf{variable}. A \textbf{random variable} is then straightforward: it is a variable that takes random individual observations. Remember that by ``random" we don't mean ``OMG like that was like SO random!". We observe statistical order in the chaos. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important notation}
+In general, we denote a random variable with a capital letter like $X$, and an individual observation with a lower case letter and index like $x_i$. \\
+$\Rightarrow$ The time you wake up each morning is a random variable, and the time you woke up this morning is an individual observation.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Histogram}
+A \textbf{histogram} describes the frequency of certain values for a variable. For example, here is a histogram of the height of Star Wars characters:
+\begin{center}
+	\includegraphics[scale=0.3]{histswheight.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Histogram}
+To develop a histogram, we first need to determine the frequency distribution: or the count of certain values. For example, the data on Star Wars characters looks like the following:
+\begin{center}
+	\includegraphics[scale=0.8]{tibbleswh.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Histogram}
+You can create a histogram by hand (the hard way), or use software (the easy way). By hand, the steps are:
+\begin{enumerate}
+	\item Decide on the number of bins
+	\item Determine bin width
+	\item Decide where to cut off the chart (should you include outliers?)
+	\item Count the number of observations in each bin
+	\item Calculate the relative frequency of each bin
+\end{enumerate}
+Of course, none of these are hard rules, so the final product will come with trial and error
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Histogram}
+Alternatively, we can use Excel. The process for creating a histogram is now: highlight the data, and press the histogram button
+\begin{center}
+	\includegraphics[scale=0.5]{excelhistbutton.png}
+\end{center}
+By formatting the x-axis, (Right click $->$ Format Axis), you can adjust the number of bins or bin width until you are happy with the communication goal
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Histogram}
+We can also use a programming language like R.
+\begin{center}
+	\includegraphics[scale=0.5]{swhistrgrab.png}
+\end{center}
+Excel requires lots of clicking buttons, while the R script can be reprodced exactly by anyone with the code.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Line chart}
+A \textbf{line chart} is a powerful communication tool for data that changes over time. It is, as it sounds, a line that connects observations with a straight line. For time-series data, this can be very powerful.
+\begin{center}
+	\includegraphics[scale=0.5]{line.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Pie chart}
+A \textbf{pie chart} is generally not great at communicating data. If your goal is to communicate differences in proportions, a bar graph is more effective unless the proportions are vastly different.
+\begin{center}
+	\includegraphics[scale=0.5]{pie.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bar graph}
+A \textbf{bar graph} uses bars to represent data, and is very common in summary statistics. A histogram is a specific example of a bar graph that is representing frequency of certain observations. A bar graph in general can represent many different types of data.
+\begin{center}
+	\includegraphics[scale=0.5]{bar.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Describing data}
+Data can be described and summarized in several ways:
+\begin{itemize}
+	\item Measures of location: mean, median, mode
+	\item Measures of dispersal: range, variance, standard deviation
+	\item Measures of shape: kurtosis
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Mean}
+If there are $N$ individuals in a population, and $x_i$ is a single observation of some value, the \textbf{population mean} is:
+$$\mu = \frac{\sum_{i=1}^Nx_i}{N}$$
+And if there are $n$ individuals in a sample (with $n<N$), then the \textbf{sample mean} is:
+$$\bar{x}=\frac{\sum_{i=1}^nx_i}{n}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Median}
+The \textbf{median} of a variable is the midpoint of the sequence of sorted values. If we observe three numbers: $\{1,2,3\}$, the median is 2, even if the numbers are presented as: $\{2,1,3\}$. If there is no direct median, we take the average of the two numbers that surround the median. So if we observe: $\{1,2,3,4\}$, the median is 2.5.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Mode}
+The \textbf{mode} of a variable is the value that appears most often in the sequence. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose AT\&T is interested in learning about how its customers use their monthly minutes. Suppose AT\&T randomly selects 12 customers and observes the following sequence of minutes per month: $\{90,77,94,94,100,112,91,100,92,100,113,83\}$
+\begin{enumerate}
+	\item What is the mean number of minutes? Is this a population or sample mean?
+	\item What is the median number of minutes?
+	\item What is the modal number of minutes?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Measures of location}
+Note the following properties:
+\begin{itemize}
+	\item If mean = median $\Rightarrow$ the distribution is symmetric
+	\item If mean $>$ median $\Rightarrow$ the distribution is right-skewed
+	\item If mean $<$ median $\Rightarrow$ the distribution is left-skewed
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Measures of dispersal}
+The \textbf{range} of a variable is the difference between the highest and lowest sorted values. 
+
+The \textbf{population variance} is: 
+$$\sigma^2 =\frac{\sum_{i=1}^N(x_i-\mu)^2}{N}$$
+The \textbf{population standard deviation} is:
+$$\sigma=\sqrt{\frac{\sum_{i=1}^N(x_i-\mu)^2}{N}}$$
+where $\mu$ is the population mean, and $N$ is the size of the population
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Measures of dispersal}
+The \textbf{sample variance} is: 
+$$s^2 =\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}$$
+The \textbf{sample standard deviation} is:
+$$s=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}$$
+where $\bar{x}$ is the sample mean, and $n$ is the size of the population
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+The five vice-presidents of Milton Bradley make the following salaries (in thousands of USD): $\{125,128,122,133,140\}$.
+\begin{enumerate}
+	\item What is the range of these salaries?
+	\item Calculate the variance and standard deviation of the measures
+	\item Are these measures a sample or population measure?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Measures of shape}
+\textbf{Kurtosis} is the measure of the tails of a distribution, compared to the normal distribution. We can calculate it for a variable X by first \emph{standardizing} X into $Z = \frac{X-\mu}{\sigma}$, then calculating: $E\bigg[ \frac{(X-\mu)^4}{\sigma^4}\bigg]$. The direct calculation is difficult to interpret, so in many applications it may be sufficient to just visually analyze the shape of the distribution.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Kurtosis}
+\begin{center}
+	\includegraphics[scale=0.5]{kurt.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Relationship between variables}
+As economists, we are often interested in the relationship between variables. If you work for the Texas Parks and Wildlife Department, perhaps you are interested in the relationship between the price of fishing permits and the stock of fish at a given lake. As a sales manager, you may be interested in the relationship between sales and characteristics of your customers. 
+
+A \textbf{scatter plot} is a graphical way to represent the relationship between two variables.
+
+The \textbf{correlation} and \textbf{covariance} between two variables is a numerical measure of the relationship.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Scatterplot}
+In a dataset with multiple variables, we can plot the relationship between any two variables using a scatterplot, which is nothing more than individual dots representing single observations.
+\begin{center}
+	\includegraphics[scale=0.4]{raw.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Relationship between variables}
+If you have two variables, X and Y, then the \textbf{correlation coefficient} is a measure of how related the variables are. You can calculate the correlation between X and Y:
+$$corr_{X,Y}=\rho_{X,Y}=\frac{1}{(n-1)}\cdot\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{s_Xs_Y}$$
+Where $s_X$ and $s_Y$ are the sample standard deviations of X and Y, respectively. 
+Note that: $-1\leq \rho_{X,Y} \leq 1$, and if $\rho_{X,Y}=0$, there is no correlation between the variables. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Relationship between variables}
+If you have two variables, X and Y, then the \textbf{covariance} is a measure of how related the variables are. You can calculate the covariance between X and Y:
+$$cov_{X,Y}=\frac{1}{(n-1)}\cdot \sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})$$
+Note that while the correlation coefficient is scale-independent (will always be between -1 and 1), covariance depends on the scale of the variables. If $cov_{X,Y}>0$, then (on average), when X is above its average, Y is above its average. If $cov_{X,Y}<0$, then when X is above its average, Y is below its average.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical testing}
+Once we describe data and random variables, we may want to perform statistical tests.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Normal distribution}
+The \textbf{normal distribution} is a common statistical distribution. Check out \href{https://www.youtube.com/watch?v=UCmPmkHqHXk&t=}{this} great video of a Galton Board that shows the cool properties of the normal distribution. The \textbf{probability density function} of the normal distribution is:
+$$f(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}\bigg(\frac{x-\mu}{\sigma}\bigg)^2}$$
+So the probability of $X$ taking some value $x$ depends on the mean and standard deviation.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Z-test}
+Using the normal distribution, we can calculate the \textbf{z-score} of a single sample mean: how many $\sigma$'s away from $\mu$.
+$$z = \frac{(\bar{x}-\mu)}{\frac{\sigma}{\sqrt{n}}}$$
+If $z>0$, then $\bar{x}$ is above the population mean, and vice versa.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Z-test}
+We use a Z-test when the sample size ($n$) is greater than thirty, and we know the population mean and standard deviation. \\
+\emph{Example} \\
+Suppose the average height of college students is 5ft 9in, with a standard deviation of 7 inches. If we took a random sample from this class, we can test whether our sample mean is different from the population mean. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Z-test}
+The z-statistic gives us the proportion of the population with values less than the observed sample. A z-score of 0 means the sample and population are identical, so half of the population lies to the left of the sample distribution.
+\begin{center}
+	\includegraphics[scale=0.5]{ztab.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test}
+The real world, unfortunately, is messy; we almost never know the population mean and standard deviation. In that case, we must use a \textbf{t-test} to compare means. Since we don't know the population parameters (recall the earlier definition of parameters), in the t-test world we are comparing different samples: is the mean of one sample different from another? Using the same example, if we took two samples of height in this class, would the two sample means be equal?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test}
+The t-test (or \emph{Student's t-test}) comes from \href{https://en.wikipedia.org/wiki/William_Sealy_Gosset}{William Sealy Gosset}, the master brewer of Guinness. His mission: determine which variety of barley had the highest yield, to subsequently use to brew Guinness. He observed different fields of barley, and compared the sample means: the world's first t-test! 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+There are several flavors of t-tests:
+\begin{itemize}
+	\item One-sample t-test
+	\item Two-sample, equal $n$, equal variance
+	\item Two-sample, ambiguous $n$, equal variance
+	\item Two-sample, ambiguous $n$, unequal variance
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Two-sample t-test with equal $n$ and equal variance:
+$$t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s^2 }{n}}}$$
+Two-sample t-test with ambiguous $n$ and unequal variance:
+$$t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}}$$
+
+The calculated t-statistic falls somewhere on the \emph{t-distribution}: an approximately normal distribution symmetric around zero that changes with the \textbf{significance level} and the \textbf{degrees of freedom}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Degrees of freedom}
+Degrees of freedom are confusing. It is the number of values in the random variable that are allowed to vary while solving for some statistic.
+\begin{itemize}
+	\item Two-sample t-test with equal $n$ and equal variance has $2n-2$ degrees of freedom
+	\item Two-sample t-test with ambiguous $n$ and unequal variance has the following degrees of freedom:
+\end{itemize}
+$$d.f. = \frac{\bigg( \frac{s^2_1}{n_1} + \frac{s^2_2}{n_2} \bigg)^2}{\frac{(s^2_1/n_1)^2}{n_1-1} + \frac{(s^2_2/n_2)^2}{n_2-1}}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{F-test}
+If we are performing a two-sample t-test, should we assume unequal or equal variances? We can test for that! An \textbf{F-test} is a statistical test of the equality of variance across two random independent samples. The F-statistic for two random variables $X$ and $Y$ is:
+$$F = \frac{\frac{1}{n-1}\sum^n_{i=1}(x_i - \bar{x})^2}{\frac{1}{m-1}\sum^m_{i=1}(y_i - \bar{y})^2}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-distribution}
+This is a t-distribution:
+\begin{center}
+	\includegraphics[scale=0.3]{tdist.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-distribution}
+To determine if the difference in means between the samples is significant, we want to see where our t-stat lands on the t-distribution.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test: Visual}
+Two-tailed test
+\begin{center}
+	\includegraphics[scale=0.5]{twotailed.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test: Visual}
+One-tailed test: positive
+\begin{center}
+	\includegraphics[scale=0.5]{onetailedp.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test: Visual}
+One-tailed test: negative
+\begin{center}
+	\includegraphics[scale=0.5]{onetailedn.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-test: steps}
+\begin{enumerate}
+	\item Form your null hypothesis
+	\item Form the alternative hypothesis
+	\item Compute t-stat
+	\item Use $\alpha$, critical value to make decision to reject or fail-to-reject null. 
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+We need to specify a \textbf{null hypothesis} and an \textbf{alternative hypothesis}:
+\begin{itemize}
+	\item Null hypothesis ($H_0$): the default (and boring) guess that nothing is happening, there are no relationships, and \textbf{there is no difference between sample means.} 
+	\item Alternative hypothesis ($H_1$): the hypothesis that contradicts the null
+\end{itemize}
+
+\begin{eqnarray}
+	\nonumber H_0: \bar{X}_1 = \bar{X}_2 \\
+	\nonumber H_1: \bar{X}_1 \neq \bar{X}_2
+\end{eqnarray}
+...what type of hypothesis test is this?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+\textbf{VERY IMPORTANT}: with hypothesis testing, you have two options:
+\begin{itemize}
+	\item Reject the null hypothesis
+	\item Fail to reject the null hypothesis
+\end{itemize}
+You do NOT have the option to say ``the null hypothesis is true'', nor ``the alternative hypothesis is true''. The truth is unknowable. The best we can do with statistics is to have enough evidence that we fail to reject a statement. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+When we reject or fail to reject a null hypothesis, we can make two types of errors:
+\begin{itemize}
+	\item \textbf{Type I error}: rejecting a true $H_0$
+	\item \textbf{Type II error}: failing to reject a false $H_0$
+\end{itemize}
+\begin{center}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lll}
+Decision              & $H_0$ is true & $H_0$ is false \\ \hline
+Fail to reject $H_0$           & Correct decision ($Pr = 1-\alpha$)    & Type II error ($Pr = \beta$) \\
+Reject $H_0$          & Type I error ($Pr = \alpha$)  & Correct decision ($Pr = 1-\beta$)  \\ \hline     
+\end{tabular}}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+We specify $\alpha$ and $\beta$.
+\begin{itemize}
+	\item $\alpha$: the probability of committing a Type I error. How comfortable are we with rejecting a true null? Are we willing to make that mistake 10\% of the time? 5\%? 1\%?
+	\item $\beta$: the probability of committing a Type II error. We want to be able to correctly reject a false null, so this is often cast as choosing the \textbf{power} of the test: How often can we detect a true effect? That is, $1-\beta$. If we want to be able to correctly identify an effect 90\% of the time, $\beta = 0.1$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+The \textbf{p-value} of a t-test is the probability of observing a value \emph{more extreme} than the tested value. If we observe a large p-value, then the probability of observing a more extreme value is likely, suggesting that our null hypothesis is correct. If the p-value is low, that suggests our null hypothesis is wrong.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+Generally speaking, when the p-value is less than $\alpha$, the difference in means is \textbf{statistically significant}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+Our decision on whether to reject or fail-to-reject can come from two related rules:
+\begin{itemize}
+	\item Compare the t-statistic to the t-critical value
+	\item Compare the p-value to the $\alpha$ you set
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+The t-critical value can come from published tables:
+\begin{center}
+	\includegraphics[scale=0.5]{tcrit.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical hypotheses}
+...or from Excel:
+\begin{itemize}
+	\item Two-tailed:``=TINV($\alpha$, df)''
+	\item One-tailed:``=TINV($2\cdot\alpha$, df)''
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Make decision}
+Two-tailed test: 
+\begin{itemize}
+	\item If $|t_{stat}|>t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Make decision}
+One-tailed test ($H_1:\bar{X}_1 - \bar{X}_2>0$): 
+\begin{itemize}
+	\item If $t_{stat}>t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+One-tailed test ($H_1:\bar{X}_1 - \bar{X}_2<0$): 
+\begin{itemize}
+	\item If $t_{stat}<-t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{p-value revisited}
+The p-value of a coefficient is technically:\\
+Two-tailed: $pvalue=Pr(|t_{stat}|>t_{crit})$ \\
+One-tailed, $H_1$ positive: $pvalue=Pr(t_{stat}>t_{crit})$ \\
+One-tailed, $H_1$ negative: $pvalue=Pr(t_{stat}<-t_{crit})$ \\
+
+We can calculate the p-value in Excel: ``=TDIST(ABS(tstat),df,tails)'' \\
+If p-value $< \alpha$, we reject the null hypothesis. Otherwise, we fail to reject the null.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The power of Excel}
+You can use the information in this section to perform a t-test by hand. Or, you can use Excel. Let's look at an example...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Recap}
+This lecture should feel dense, but not unfamiliar; much of it should be a review of your statistics classes. Moving forward, you will not be burdened with much new statistical knowledge, but you will be expected to apply basic hypothesis testing to economic situations.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Key skills}
+After completing this lecture and problem set, you should be comfortable with:
+\begin{itemize}
+	\item Summarizing data using tables and figures
+	\item Applying a t-test to test the equality of means for two samples
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Going further}
+If you would like to extend this material, or are serious about becoming an analyst, \href{mailto:black.michael@tamu.edu}{email me} to start using R.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
