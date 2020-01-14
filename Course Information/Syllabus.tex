@@ -1,0 +1,153 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple LaTeX document having a more compact look
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usepackage{lipsum}
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+
+\title{AGEC 317: Economic Analysis for Agribusiness Management}
+\author{Section 503/203, Spring 2020}
+\date{Tuesday/Thursday, 11:10am - 12:25pm, KLCT 127}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\section*{Instructor}
+Michael Black \\
+Email: \href{mailto:black.michael@tamu.edu}{black.michael@tamu.edu} \\
+Office: AGLS 360 \\
+Office Hours: Wednesday, 1:30 - 3:30pm
+
+\section*{Teaching Assistant}
+Yuhong ``Helen" Lei \\
+Email: \href{mailto:lyh983515371@tamu.edu}{lyh983515371@tamu.edu} \\
+Office: AGLS 384 \\
+Office Hours: Monday, 11am - 1pm
+
+\section*{Course Description}
+This course introduces you to quantitative methods used in agribusiness management. Emphasis is placed upon formal methods and tools of economic analysis including statistical techniques, optimization, and regression analysis with strong economic applications. You will learn how to implement the above techniques using real data in Microsoft Excel or R.
+
+\section*{Course Objectives}
+This course aims for students to: 
+\begin{enumerate}
+	\item Become proficient in analyzing and tackling basic economic and managerial problems
+	\item Learn how formal quantitative methods are used in analyzing real world problems
+	\item Be able to use standard statistical software to analyze data and interpret results from the analysis
+\end{enumerate}
+
+\section*{Prerequisites}
+Formally: AGEC 217; ECON 322 or ECON 323; SCMT 303 or STAT 301 or STAT 302 or STAT 303; and junior or senior classification; agricultural economics, agribusiness major only; or approval of department head. \\
+\\
+Informally: You need to be comfortable with basic calculus and statistics. 
+
+\section*{Course Website}
+All information will be disseminated on \href{http://ecampus.tamu.edu}{eCampus.}
+
+\section*{Course Outline}
+
+\begin{center}
+\begin{tabular}{ll}
+Module             & Topic \\ \hline
+1  & Statistics review \\
+2 & Calculus review \\
+3 & Simple linear regression \\
+4 & Multiple regression \\
+5 & Advanced model specifications \\
+6 & Applied production economics\\
+7 & Applied demand analysis\\
+8 & Personal finance and forecasting \\ \hline   
+\end{tabular}
+\end{center}
+
+
+\section*{Readings}
+There are no \emph{required} textbooks for this class. As you are probably painfully aware, books are expensive. The material you are expected to learn will be contained within the lectures. That said, we don't have enough time to cover each topic as deeply as you may like. If you are struggling with a particular part of the class, you may find the following resources helpful: \\
+\subsection*{Textbooks}
+\begin{itemize}
+	\item Wooldridge, Jeffrey M. \emph{Introductory econometrics: A modern approach.} Nelson Education, 2015.
+	\item Hirschey, Mark, and Eric Bentzen. \emph{Managerial economics.} Cengage Learning, 2016.
+\end{itemize}
+\subsection*{Open-Source Textbooks}
+\begin{itemize}
+	\item \href{https://d3bxy9euw4e147.cloudfront.net/oscms-prodcms/media/documents/IntroductoryBusinessStatistics-OP_MxkHmqw.pdf}{Introductory Business Statistics}
+	\item \href{http://www.opentextbookstore.com/buscalc/BusCalc.pdf}{Business Calculus}
+	\item \href{https://openoregon.pressbooks.pub/beginningexcel/}{Beginning Excel}
+\end{itemize}
+\subsection*{Online Help}
+\begin{itemize}
+	\item \href{https://www.khanacademy.org/}{Khan Academy}: search for whatever specific topic you are struggling with, and Khan Academy will produce videos and exercises for you to sharpen your skills.
+	\item \href{https://www.youtube.com/}{YouTube}: not just for videos of cats.
+\end{itemize}
+
+
+\section*{Software}
+All problem sets (homework) will use Microsoft Excel. If you don't currently have Excel downloaded, you can download the newest version of Microsoft Office for free \href{https://gateway.tamu.edu/office365/}{here}. If you have a laptop, please make sure you have Excel downloaded, and please bring your laptop to class each day. It will be very useful to follow along on your own computer when going through exercises in class. \textbf{After downloading Excel, please add the Data Analysis and Solver add-ins.} We will discuss how to do this in class.
+\\
+\\
+If you have an interest in becoming an analyst in your future, I highly recommend you use R in addition to Excel. R is a statistical programming language, and is free to \emph{everyone}, and is much more powerful than Excel. Some basic experience with R will look great on your resume. If you are up for this challenge, you can download the language \href{https://cran.cnr.berkeley.edu/}{here}, and then download the user-interface studio \href{https://www.rstudio.com/products/rstudio/download/}{here}.
+
+\section*{Grades}
+There are 100 total points available in this class, distributed over exams and problem sets:
+\begin{center}
+\begin{tabular}{ll}
+Item             & Points \\ \hline
+Exam 1           & 30     \\
+Exam 2           & 30     \\
+Problem Sets           & 40     \\\hline
+Total            & 100    \\
+                 &       
+\end{tabular}
+\end{center}
+Your final letter grade will be assigned based on your final cumulative point total:
+\begin{center}
+\begin{tabular}{ll}
+Points             & Letter Grade \\ \hline
+$\geq$ 90           & A     \\
+80 - 89           & B     \\
+70 - 79          & C     \\
+60 - 69 & D     \\
+$<$ 60    & F         
+\end{tabular}
+\end{center}
+Please note that there no exceptions for the grade cutoffs. If you want to round-up your grade by a point in May, try harder in March. 
+
+\section*{Exams}
+There will be 2 exams given throughout the semester. These exams will be comprehensive, but will focus on the most recent material. One single-sided sheet (8.5''x11'') of hand-written notes will be allowed per student per exam. Only non-programmable calculators may be used during the exams. The use of any other calculators such as graphing calculators or applications on cellular phones, tablets, or computers is prohibited. 
+\section*{\emph{Tentative exam dates}}
+\begin{itemize}
+	\item Mid-term: March 5th, in-class
+	\item Final: April 23rd, in-class
+\end{itemize}
+
+\section*{Problem Sets}
+There will be 8 problem sets throughout the semester. Each problem set corresponds to a set of lecture notes covered in class. The problem sets are designed to challenge you, and will force you to interact with data and Excel spreadsheets extensively. The ``P-sets" are meant to be completed by you alone: working in groups is not allowed. Each problem set is worth 5 points; 8 sets x 5 points each = 40 points.
+
+\section*{Class Attendance} 
+Much of what is covered in the problem sets and exams comes from lectures, not just the lecture notes. If you just download the lecture notes and don't come to class, you will struggle with this course. \\
+\\
+The make-up policy for this course adheres strictly to \href{http://student-rules.tamu.edu/rule07}{Student Rule 7}. Makeup exams will be given, but \textbf{only to those who have university-excused absences}. Check the above link regarding what constitutes an excused absence. I must be notified in advance of the absence unless there are extenuating circumstances. If a makeup exam is given, it must be taken within 48 hours of the original date scheduled for the class, unless there are extenuating circumstances. Please also note that questions for makeup exams will be different from the questions given in the original exams. An absence without an approved excuse will result in a grade of zero for a particular exam. \\
+Because you can submit problem sets early, \textbf{no late problem sets will be accepted.}
+
+\section*{Americans with Disabilities Act (ADA) Policy Statement}
+The Americans with Disabilities Act (ADA) is a federal anti-discrimination statute that provides comprehensive civil rights protection for persons with disabilities. Among other things, this legislation requires that all students with disabilities be guaranteed a learning environment that provides for reasonable accommodation of their disabilities. If you believe you have a disability requiring an accommodation, please contact Disability Services, in Cain Hall, Room B118, or call 845-1637. For additional information see \href{http://disability.tamu.edu}{here}.
+
+\section*{Academic Integrity Statement and Policy}
+Please adhere to the Aggie Honor Code: “\emph{An Aggie does not lie, cheat or steal, or tolerate those who do.}” This promotes the core values that our university strives to maintain and is not only beneficial to you but also your classmates, to those who proceed you, and to those who follow in your footsteps. If you have a question regarding academic integrity, \href{http://aggiehonor.tamu.edu}{see here}. Do not hesitate to ask to clarify any policies.
+    
+% Turn on when you have a .bib file in your directory
+% \bibliography{file_name.bib}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
