@@ -1,0 +1,630 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+\usepackage{amsmath}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Calculus Review}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain, noframenumbering]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Algebraic foundations}
+In this class (and the real world) we use statistics to make \emph{inferences}, and calculus to make \emph{decisions}. We need lots of math in our toolkits. To start, you should be able to solve the following algebra problems:
+\begin{center}
+\begin{eqnarray}
+	\nonumber 8x - 15 = 3x &\implies& x = 3 \\
+	\nonumber (3x-1)(x+1)=3x^2 &\implies& x = \frac{1}{2} \\
+	\nonumber ab^x-c = 0 &\implies& x = \frac{ln(\frac{c}{a})}{ln(b)} \\
+	 \nonumber \begin{cases} 4xy - 2y -11 = 0 \\ 2xy - 3y - 4 = 0\end{cases} &\implies& \begin{cases} x = \frac{25}{6} \\ y = \frac{3}{4}\end{cases}
+\end{eqnarray}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Useful log rules}
+We will use logarithmic and exponential functions as the class progresses. You should be familiar with the fundamental relationship between the two: 
+\begin{itemize}
+	\item $ln(x)$ is the natural logarithm of x, $e^x$ is the exponential of x
+	\item $e^{(ln(x))}=x$ and $ln(e^x)=x$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Univariate linear function}
+What is the equation for a line? In grade school, you learned:
+$$y = mx + b$$
+Now, we use the same formula, but change the notation:
+$$y = \beta_0 + \beta_1 x$$
+Then we say y is a linear function of x (and only x, hence ``uni''-variate), with an \textbf{intercept} equal to $\beta_0$ and a \textbf{slope} equal to $\beta_1$. \\
+Interpretations:
+\begin{itemize}
+	\item $\beta_0$ is the value of y when x = 0
+	\item $\beta_1$ is the increase in y associated with a one-unit change in x. In grade school you called it the \textbf{slope}. Now we call it the \textbf{marginal effect}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose the relationship, in USD, between monthly housing expenditures (y) and income (x) is estimated as: $y = 164 + 0.27x$
+\begin{itemize}
+	\item What is the intercept? What does this mean?
+	\item What is the slope? What is the marginal effect when x = 5? What is the marginal effect when x = 200? How would you interpret the marginal effect?
+	\item What happens to expenditures if income increases from 100 to 200?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multivariate linear function}
+Think of the function:
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+\begin{itemize}
+	\item We can say y is a linear function of $x_1$ and $x_2$
+	\item The intercept is $\beta_0$
+	\item The slope of y with respect to, or in the dimension of, $x_1$ is $\beta_1$. But... be careful.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multivariate linear function}
+Think of the function:
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+\begin{itemize}
+	\item Note that this function \emph{maps} the arguments of $x_1$ and $x_2$ to a singular y.
+	\item Think about moving a small amount along the function. We have to move along both x-dimensions. That is:
+	$$\Delta y = \beta_1\Delta x_1 + \beta_2 \Delta x_2$$
+\end{itemize}
+Then, $\beta_1 = \frac{\Delta y}{\Delta x_1}$ if and only if $\Delta x_2 = 0$. Thus we have a \emph{very} important interpretation: \\
+$\beta_1$ is the marginal effect of $x_1$ on y. That is, $\beta_1$ tells us, for a given small change in $x_1$, how y will change, \emph{holding $x_2$ constant}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multivariate linear function}
+For multivariate linear functions like:
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+We call $\beta_1$ a \textbf{partial effect} instead of a \emph{marginal effect}, because it is only the partial story; we also have $\beta_2$. Both are partial effects. Confusingly, economists may sometimes call partial effects marginal effects.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose the estimated relationship between quantity demanded (q in oz) of steak and the price-per-oz (p) of the steak and income (y) of the individual is:
+$$q = 120 - 9.8p + 0.02y$$
+\begin{itemize}
+	\item What is the intercept?
+	\item What are the slopes?
+	\item What is the partial effect of price on quantity demanded?
+	\item What is the partial effect of income on quantity demanded?
+	\item What is the change in quantity demanded (in oz) for steak if the price increases by one unit and income decreases by \$100?
+\end{itemize} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Univariate nonlinear function}
+What happens if we have the function:
+$$y = 6 + 8x - 2x^2$$
+We have only one variable on the right-hand side (RHS), so we have a univariate function. What is the marginal effect of x on y? That is, what is the slope of the following line? \\
+\begin{center}
+	\includegraphics[scale=0.1]{nonlinearmathreview.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Slope of nonlinear functions}
+Firms are interested in maximizing profits. Where does this occur if the profit function (TR-TC) looks like this: \\
+\begin{center}
+	\includegraphics[scale=0.1]{mathreviewprofitnonlinear.png}
+\end{center}
+The explicit function is: $y = -x^2 + 8x$. Where does the maximum of this function occur? How do we find that maximum?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Calculus}
+We can identify maxima and minima using derivatives. A derivative of a function $f$ at point $a$ is defined as:
+$$f'(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}$$
+Recall your first introduction to what a slope is. Remember ``rise over run''? The formal definition of a derivative is just this! The numerator is the rise, and denominator is the run. If we let the ``run'' go very close to zero, we get the \emph{instantaneous} slope of the function at $a$. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Calculus}
+\textbf{A derivative is the estimation of the slope of a function}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Calculus}
+There are several notations for a derivative. If $y = f(x)$, the derivative can be written as:
+\begin{itemize}
+	\item $\frac{dy}{dx}$
+	\item $y'(x)$
+	\item $\frac{df(x)}{dx}$
+	\item $f'(x)$
+\end{itemize}
+Sometimes $d$ is replaced with $\partial$. For the purposes of this class, these are all equivalent.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Quick recap}
+So where are we? At this point, you should be able to recognize the following types of functions, and how to identify the marginal/partial effects (slopes):
+\begin{itemize}
+	\item Univariate linear function
+	\item Multivariate linear function
+	\item Univariate nonlinear function
+\end{itemize}
+You should also recognize that a derivative gives use \emph{the} slope for linear functions, and an \emph{instantaneous} slope for nonlinear functions.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important rules}
+There are several derivative rules that are helpful to remember
+\begin{itemize}
+	\item Constant function rule: if $f(x) = c$, $$\frac{\partial f(x)}{\partial x} = 0$$
+	\item Power function rule: if $f(x) = cx^n$, $$\frac{\partial f(x)}{\partial x} = (c\cdot x)x^{n-1}$$
+	\item The additive property of derivatives: if $y = f(x) + g(x)$, $$\frac{\partial y}{\partial x} = f'(x) + g'(x)$$
+	(Same with subtraction)
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important rules}
+\begin{itemize}
+	\item The product rule: if $y = f(x)\cdot g(x)$ $$\frac{\partial y}{\partial x} = f(x)g'(x) + g(x)f'(x)$$
+	\item The quotient rule: $y = \frac{f(x)}{g(x)}$ $$\frac{\partial y}{\partial x} = \frac{f(x)g'(x) - g(x)f'(x)}{g(x)^2}$$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important rules}
+\begin{itemize}
+	\item The chain rule: if $y = f(g(x))$ $$\frac{\partial y}{\partial x} = g'(x)f'(g(x))$$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important rules}
+\begin{itemize}
+	\item If $y = ln(x)$ $$\frac{\partial y}{\partial x} = \frac{1}{x}$$
+	\item If $y = e^x$ $$\frac{\partial y}{\partial x} = e^x$$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Important rules}
+You are responsible for knowing how to take a derivative of non-trigonometric functions. If you need help shaking the rust off, see the following resources (clickable):
+\begin{itemize}
+	\item \href{https://www.mathsisfun.com/calculus/derivatives-rules.html}{Good list of derivative rules}
+	\item \href{https://www.khanacademy.org/math/differential-calculus/dc-diff-intro}{Practice with Khan Academy}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Find the derivatives of y wrt $x$:
+\begin{eqnarray}
+	y &=& 164 + 0.28x \\
+	y &=& 5.25 + 0.48x - 0.0008x^2 \\
+	y &=& 33 + 45ln(x) \\
+	y &=& e^{\beta_0 + \beta_1 x} \\
+	y &=& 120 - 9.8z + 0.03x \\
+	y &=& 5 + 4x + 3z + 5x^2 + 8z^2 + 2xy \\
+	y &=& e^{0.8 + 1.5x - 0.9z}
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example Answers}
+Find the derivatives of y wrt $x$:
+\begin{eqnarray}
+	\frac{\partial y}{\partial x} &=& 0.28 \\
+	\frac{\partial y}{\partial x}  &=& 0.48 - 0.0016x \\
+	\frac{\partial y}{\partial x}  &=& \frac{45}{x} \\
+	\frac{\partial y}{\partial x}  &=& \beta_1\cdot e^{\beta_0 + \beta_1 x} \\
+	\frac{\partial y}{\partial x}  &=& 0.03 \\
+	\frac{\partial y}{\partial x}  &=& 4 + 10x + 2y \\
+	\frac{\partial y}{\partial x}  &=& 1.5\cdot e^{0.8 + 1.5x - 0.9z}
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Optimization}
+We optimize all the time, and optimization is \textbf{the solution to a calculus problem}. As economists, we assume people behave \emph{rationally}, meaning they are utility-maximizers, i.e. optimizers. Some every-day examples include:
+\begin{itemize}
+	\item Your choice of breakfast
+	\item The route you took to class and your mode of transportation
+	\item Your choice of computer
+	\item Your decision to stand throughout all football games
+\end{itemize}
+In economics, decisions in general are assumed to be optimal subject to some set of constraints.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Optimization}
+The people that make optimized decisions are called \textbf{economic agents}, and can be individuals, firms, governments, or any other entity making a decision. In the world of agricultural economics and agribusiness, we may be interested in:
+\begin{itemize}
+	\item The optimal acres of corn and cotton to plant
+	\item How much oil to extract from a given well
+	\item How much power generation to supply
+	\item The optimal price for a bag of Dorritos
+	\item The optimal tax for a polluting factory
+\end{itemize}
+And many, many more.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{How to optimize}
+We make optimal decisions using the following steps
+\begin{enumerate}
+	\item Identify the objective function (the goal of the agent)
+	\item Identify the choice variables (the variables under control of the agent which can be manipulated or changed)
+	\item Identify the constraints (equality constraints such as demand = supply or inequality constraints such as your spending should be less than or equal to your budget)
+	\item Solve
+\end{enumerate}
+Let's explore each step in more detail...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Identify the objective function}
+The objective function is the mathematical object we are trying to optimize. Typically, it is a well-defined function that has a clear maximum or minimum over our desired range. Some examples include:
+\begin{itemize}
+	\item Profit: $\pi = pq - c(q)$ 
+	\item Total costs: $c(q) = 34 + 2q + 3q^2$
+	\item Utility: $u = 3 + 4(tacos) + 2(oreos) - 400(asparagus)$
+\end{itemize}
+It is the function that describes our goal. If you want to maximize utility, you objective function is the utility function.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Identify the choice variables}
+The choice variables are the objects (variables) in the objective function that the agent can control. For example, suppose Waste Management in Houston wants to minimize the cost of trash pick-up. Their objective function is total cost, which is a function of the distance travelled, the presence of toll roads, and the weather of the day (it is costlier to drive in the rain):
+\begin{itemize}
+	\item Objective function: $C = 0.2(distance) + 0.03(rainyday) + 0.5(tollroad)$
+\end{itemize}
+The control variables are: $distance$ and $tollroad$, since WM can \emph{choose} the distance and whether to use toll-roads or not. They cannot, however, choose whether it rains or not. Thus, $rainyday$, while in the objective function, is not a choice variable.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Identify the constraints}
+Constraints make optimization problems realistic. What is the optimal house to buy? Obviously the most expensive one on the market. However, we face constraints in the real world that prevent truly optimal decisions. There are several types of constraints:
+\begin{itemize}
+	\item Resource constraints
+	\item Legal constraints
+	\item Environmental constraints
+	\item Behavioral constraints
+	\item Time constraints
+\end{itemize}
+Let's come back to how we treat constraints mathematically in a bit. For now, let's solve a simple optimization problem.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unconstrained optimization}
+Ignoring constraints, how do we optimize? We know that if $f(x)$ is a function, a point $x^*$ is a minimum if $f'(x) = 0$ and $f''(x) > 0$, and is a maximum if $f'(x) = 0$ and $f''(x) < 0$. To find $x^*$, then, we just need to find the point where $f'(x)=0$, and ensure we have found the correct extrema using the second derivative. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unconstrained optimization}
+In other words, we find an \textbf{optimal point} by setting the derivative of our objective function (with respect to our choice variables) equal to zero, and we can determine whether that optimal point is a maximum or a minimum by taking a second derivative, and seeing whether the second derivative is positive or negative. If positive, we have found a \textbf{minimum}, and if negative, we have found a \textbf{maximum}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unconstrained optimization}
+Taking the first derivative and setting equal to zero results in \textbf{First-Order Conditions} (FOCs), and taking the second derivative results in \textbf{Second-Order Conditions} (SOCs).
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unconstrained optimization}
+Suppose we want to maximize profits, and we have:
+$$\pi = a + bQ - cQ^2$$
+Then, the derivative is:
+$$\frac{\partial \pi}{\partial Q} = b - 2cQ$$
+Then, the optimal is:
+$$b - 2cQ = 0 \implies Q^* = \frac{b}{2c}$$
+And we confirm we have a maximum:
+$$\frac{\partial^2 \pi}{\partial Q^2} = -2c < 0$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Unconstrained optimization}
+Once we have found the optimal level of the choice variable (in this case, Q), we can evaluate the original objective function at this optimal level. That is:
+$$\pi = a + bQ - cQ^2 \implies \pi^* = a + b(\frac{b}{2c}) - c(\frac{b}{2c})^2$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose we have the following objective function with the intention of maximizing profits:
+$$\pi = 250q - 5q^2$$
+\begin{enumerate}
+	\item What is the choice variable?
+	\item What is the optimal level of q: $q^*$?
+	\item Is the optimal a maximum or minimum?
+	\item Given the optimal level of q, what is the optimized profit?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose Tropicana faces a total cost $C$ as a function of the quantity of oranges to produce ($q$) for its orange juice products:
+$$C(q) = 20 - q + 0.1q^2$$
+And suppose further that Tropicana faces the following demand curve for orange juice as a function of the price of OJ (p) and the price of grapefruit juice (z): \\
+$q = 120 - 10p + 5z$
+\begin{enumerate}
+	\item What is the choice variable?
+	\item What is the optimal level of q: $q^*$?
+	\item Is the optimal a maximum or minimum?
+	\item Given the optimal level of q, what are the optimized costs?
+	\item If the price of grapefruit juice is 10, what is the optimal price of orange juice?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose we have the following objective function that we want to maximize:
+$$y = 10 - (x_1-1)^2 - (x_2-2)^2$$
+\begin{enumerate}
+	\item What are the first-order conditions? (Derivatives wrt $x_1$ and $x_2$)
+	\item What is the optimal level of y?
+	\item Is the optimal a maximum or minimum?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Constrained optimization}
+The optimization process is simple enough, but it becomes much more complicated when we add constraints. If we want to add a budget constraint to a spending problem, or an environmental constraint to a production problem, we use the \textbf{Lagrange Multiplier Method}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Lagrange Multiplier Method}
+When faced with a constrained optimization problem, we have to add some pieces to our approach.
+\begin{enumerate}
+	\item Identify the objective function
+	\item Identify the control variables
+	\item Identify the constraints
+	\item \textbf{Set up the Lagrangian}
+	\item Solve
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Setting up the Lagrangian}
+We have already covered the first three steps. Let's explore how to set up the Lagrangian equation. The general form of the Lagrangian is:
+\begin{itemize}
+	\item $\mathcal{L}$ = objective function + $\lambda$(constraint)
+	\item $\lambda$ is called the Lagrange multiplier
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Setting up the Lagrangian}
+If our objective function is $y = f(x,z)$ and our constraint is $g(x,z) = 0$, the Lagrangian would be:
+$$\mathcal{L} = f(x,z) + \lambda (g(x,z))$$
+If our objective function is $y = f(Q_1, Q_2)$ and our constraint is $100> P_1Q_1 + P_2Q_2$, the Lagrangian would be:
+$$\mathcal{L} = f(Q_1, Q_2) + \lambda (100 - P_1Q_1 - P_2Q_2)$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Setting up the Lagrangian}
+To move a constraint into the Lagrangian, you can use the following rule:
+\begin{itemize}
+	\item Observe the form of the constraint. Usually it looks like: ``some number'' = ``some stuff with variables''
+	\item Move the ``some stuff with variables'' over to the side with ``some number''
+	\item Insert the side that doesn't say ``0'' into the Lagrangian
+\end{itemize}
+For example, $23 = q + z - w$ is a constraint that would become: $23 - q - z + w = 0$, and you would use the LHS here as the piece in the Lagrangian.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Solving the Lagrangian}
+To solve a Lagrangian, you need to:
+\begin{itemize}
+	\item Take the derivative of the Lagrangian wrt each choice variable
+	\item Take the derivative of the Lagrangian wrt to the Lagrange multiplier
+	\item Set all derivatives equal to 0
+	\item Solve the system of equations
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Solving the Lagrangian}
+In math terms, if the objective function is $y = f(x_1, x_2, \cdots, x_N)$ and the constraint is $g(x_1, x_2, \cdots, x_N) = 0$:
+\begin{eqnarray}
+	\nonumber \frac{\partial \mathcal{L}}{\partial x_1} = 0 \\
+	\nonumber \cdots \\
+	\nonumber \frac{\partial \mathcal{L}}{\partial x_n} = 0 \\
+	\nonumber \frac{\partial \mathcal{L}}{\partial \lambda} = 0
+\end{eqnarray}
+Solve.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The Lagrangian multiplier}
+The Lagrange multiplier, $\lambda$ has a special interpretation. It is the marginal effect of a unit change in the constraint on the objective function. For example, if the problem was to maximize utility subject to a budget constraint, $\lambda$ would tell us the increase in utility from a unit increase in income (aka a unit relaxation of the constraint). It is also called a shadow price, which sounds awesome. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The Lagrangian multiplier}
+We also observe the equi-marginal principal:
+$$\frac{\frac{\partial f}{\partial x_i}}{\frac{\partial g}{\partial x_i}} = \lambda$$
+Which tells us that in optimality, the ratio of marginal benefits to marginal costs of using additional x is equal to $\lambda$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Maximize $$ln(x) + 2ln(y) + 3ln(z)$$ subject to $$x + y + z = 60$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+You have \$600 and an incredible hunger for sushi, $S$, and tacos, $T$. Your utility function is: $$U(S,T) = \frac{3}{2}S^{\frac{2}{3}}T^{\frac{1}{3}}$$
+If a roll of sushi costs \$10 and a taco costs \$5, what is the optimal number of rolls and tacos you should buy to exhaust your budget? 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose you own a local power utility, and can produce electricity from one of two plants: a natural gas generator (output in MW = x) and a coal-fired plant (output in MW = y). Suppose you need to produce 40 MW in the next hour. Suppose further that your cost of production is $$C(x,y) = x^2 + 2y^2 - xy$$
+What is the optimal output of MW from the natural gas and coal-fired generators?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear Algebra}
+The final branch of mathematics used in regression/data analysis is \emph{linear algebra}. While we use Excel or R or other platforms to do data analysis, every language is essentially just representing matrices. The use of matrices in math is linear algebra.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear Algebra}
+\begin{center}
+\includegraphics[scale=0.4]{excel_mat.png} \\
+$\downarrow$ \\
+\vspace{0.5cm}
+$\begin{bmatrix}  
+	1 & 91 & 89 \\ 
+	2 & 79 & 24 \\ 
+	3 & 99 & 100 
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear Algebra}
+So what? Behind the Excel Data Analysis ToolPak, everything is expressed in matrices. Any model with more than one \textbf{explanatory variable} (defined soon) requires linear algebra, so we need to know some basic operations.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Addition}
+\begin{center}
+$\begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$
+$+$
+$\begin{bmatrix}  
+	e & f \\ 
+	g & h   
+\end{bmatrix}$
+$=$
+$\begin{bmatrix}  
+	a+e & b+f \\ 
+	c+g & d+h   
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Subtraction}
+\begin{center}
+$\begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$
+$-$
+$\begin{bmatrix}  
+	e & f \\ 
+	g & h   
+\end{bmatrix}$
+$=$
+$\begin{bmatrix}  
+	a-e & b-f \\ 
+	c-g & d-h   
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Multiplication}
+\begin{center}
+$\begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$
+$\times$
+$\begin{bmatrix}  
+	e & f \\ 
+	g & h   
+\end{bmatrix}$
+$=$
+$\begin{bmatrix}  
+	ae + bg & af + bh \\ 
+	ce + dg & cf + dh   
+\end{bmatrix}$
+\end{center}
+
+\begin{center}
+$\begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$
+$\times$
+$\begin{bmatrix}  
+	e & f & g \\ 
+	h & i & j   
+\end{bmatrix}$
+$=$
+$\begin{bmatrix}  
+	ae + bh & af + bi & ag + bj\\ 
+	ce + dh & cf + di & cg + dj  
+\end{bmatrix}$
+\end{center}
+A matrix's dimensions are number of rows $\times$ number of columns. Matrix multiplication can only occur when the number of columns of the first matrix matches the number of rows of the second. The resulting matrix will have dimensions of: the number of rows of the first matrix and the number of columns of the second matrix.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Multiplication}
+If $A = \begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$ and $B = \begin{bmatrix}  
+	e & f & g \\ 
+	h & i & j   
+\end{bmatrix}$, then: \\
+$A\times B = AB = C$, and $C$ will have 2 rows 3 columns. $B\times A$ is not possible.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Transpose}
+$A = \begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$ 
+$\Rightarrow$
+$A^T = \begin{bmatrix}  
+	a & c \\ 
+	b & d   
+\end{bmatrix}$ \\
+\vspace{0.5cm}
+A \emph{transpose} operation will flip a matrix so that the rows become columns and the columns become rows.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Inverse}
+$A = \begin{bmatrix}  
+	a & b \\ 
+	c & d   
+\end{bmatrix}$ 
+$\Rightarrow$
+$A^{-1} = \frac{1}{ad - bc} \begin{bmatrix}  
+	d & -b \\ 
+	-c & a   
+\end{bmatrix}$ \\
+\vspace{0.5cm}
+A \emph{matrix inverse} is essentially division for matrices, but is much more complicated. The above example is unique for a 2$\times$2 matrix, where we pre-multiply the matrix \emph{determinant}, and swap the diagonals of the matrix, and multiply one diagonal by negative one. The inverse operation gets very complex as the size of the matrix grows.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Notation}
+Finally, some important notation before moving on to regression analysis. In this class, and in formal economic models, we use \emph{summation notation}:
+\begin{center}
+	\includegraphics[scale=0.5]{sum_not.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+$$\sum_{i=1}^5 x_i$$
+\begin{itemize}
+	\item What is the index?
+	\item What is the unit of observation?
+	\item How many observations are we adding up?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Recap}
+In this lecture, we have reviewed algebraic systems, basic calculus in the form of derivatives, special logarithmic functions, how to set up and solve an optimization problem, and some basic linear algebra.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Key Skills}
+At this point you should:
+\begin{itemize}
+	\item Be able to solve an algebraic system
+	\item Be able to take a simple derivative of various types of functions
+	\item Be able to set up and solve an optimization problem
+	\item Be able to perform basic linear algebra operations
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
