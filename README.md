@@ -11,7 +11,9 @@ Please see the [syllabus](https://github.com/econ-by-mb/agec317/blob/master/Cour
 As module lectures are developed, they will appear here:
 * Day 1: [General overview](https://github.com/econ-by-mb/agec317/blob/master/Day%201/Class%20Introduction.pdf)
 * Module 1: [Statistics review](https://github.com/econ-by-mb/agec317/blob/master/Module%201%20-%20Statistics/Statistics%20Review.pdf)
+* Module 2: [Calculus review](https://github.com/econ-by-mb/agec317/blob/master/Module%202%20-%20Calculus/Calculus%20Review.pdf)
 
 ## Problem Sets
 As module problem sets are developed, they will appear here. If you are an instructor and would like the answer keys, please [contact me](mailto:black.michael@tamu.edu).
 * Problem Set 1: [Statistics review](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS1.pdf)
+* Problem Set 2: [Calculus review](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS2.pdf)
