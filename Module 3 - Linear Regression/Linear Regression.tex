@@ -1,0 +1,505 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+\usepackage{amsmath}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Linear Regression}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain, noframenumbering]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{A tale of two variables}
+If we have two variables, we may be interested in the relationship between them:
+\begin{itemize}
+	\item Amount of time spent studying and grade on an exam
+	\item Moon phase and Aggie football score
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{A tale of two variables}
+We can calculate the correlation and covariance between the variables, but correlation doesn't tell us anything about the \emph{magnitude} of the relationship, and covariance is sensitive to the variance of each variable. \\
+Instead of coming up with a single number describing the relationship, let's build a \textbf{model} that helps us define the relationship as an equation.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression}
+\textbf{Linear regression} is a way to represent the relationship between two variables using a straight line:
+$$Grade = \beta_0 + \beta_1(StudyTime)$$
+(Nothing different between this and the classic ``$y=mx+b$". It is just a line.)
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+We begin with raw data:
+\begin{center}
+	\includegraphics[scale = 0.4]{cars_data.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+Then we make a scatterplot:
+\begin{center}
+	\includegraphics[scale = 0.075]{raw.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+A single observation, in this case, is a car. The car has a weight and an MPG. However, not all cars weigh the same and have the same MPG; there is much variety on the market. We are interested in the \emph{relationship} between the two variables. That is, for an increase in weight of the car, how much does MPG typically change? The answer is surprisingly simple:
+\begin{itemize}
+	\item Look at raw data
+	\item Draw a line
+	\item Slope of line = relationship
+\end{itemize}
+No math needed! All you need is an eye (or two), a pencil, and a scatterplot of the data. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+Look! A line!
+\begin{center}
+	\includegraphics[scale = 0.075]{linear.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+But wait! I think the red line is better!
+\begin{center}
+	\includegraphics[scale = 0.075]{linear2.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+We can argue all day about the red line vs the blue line, but the \emph{correct} answer is whichever line uses the following math:
+\begin{enumerate}
+	\item Draw a line
+	\item Calculate the distance from each point to the line (call it a ``residual'')
+	\item Square each of those residuals, and add all the residuals together
+	\item Repeat steps 1 - 3 until you have found the line that \textbf{minimizes the sum of squared residuals}
+\end{enumerate}
+This approach take a while, but you just performed \textbf{ordinary least squares}. Least squares = minimized sum of squared residual.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+So a linear regression is the estimation of a line that best fits our data, and that line describes the relationship between the variables. Some notes:
+\begin{itemize}
+	\item Correlation measures the association between variables, not the relationship. That is, correlation can tell us \emph{something} about the relationship, but not everything. If the correlation coefficient is negative, the regression slope should also be negative. But the regression gives us the magnitude of the slope, while correlation cannot. 
+	\item Regression, in general, is used to investigate the effect of an independent variable, X, on a dependent variable, Y.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+Yet again, economists have multiple names for the same thing:
+\begin{itemize}
+	\item Y = f(X)
+	\item \textbf{Dependent variable = f(Independent variable)}
+	\item Regressand = f(Regressor)
+	\item LHS = f(RHS)
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{What is linear regression?}
+Suppose you work in sales for \href{https://biartecoffee.com/}{Biarte Coffee} (a coffee grower/roaster founded by a recent graduate of our MAB program!). What are some variable pairs you could use regression to explore? What kind of data would you need?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression model}
+Recall the line we drew earlier
+\begin{center}
+	\includegraphics[scale = 0.075]{linear.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression model}
+A regression model between Y (MPG) and X (weight) is:
+$$y_i = \beta_0 + \beta_1x_i + u_i$$
+where $y_i$ is the MPG of some car $i$, $x_i$ is the weight of the car, $\beta_0$ is the intercept, $\beta_1$ is the slope, and $u_i$ is the distance from the observation to the line.
+We \textbf{observe} $y_i$ and $x_i$, \textbf{estimate} $\beta_0$ and $\beta_1$, and \textbf{calculate} $u_i$. 
+
+$\beta_0$ and $\beta_1$ are the \emph{structural} parts of the model, and $u_i$ is the \emph{random} component.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression model}
+When we perform a linear regression, it is important to note that $u_i$ (the error or residual) captures \emph{everything else} about $i$. Is MPG a function of car weight \emph{and} engine size? If we don't observe engine size, then that effect is captured by the error term. It is the catch-all for our function.
+
+If there is something important hidden in the catch-all, then our simple model is not good. We'll come back to how to recognize this problem, known as omitted variable bias.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression model}
+Recall our first try at ordinary least squares (OLS):
+\begin{enumerate}
+	\item Draw a line
+	\item Calculate the distance from each point to the line (call it a ``residual'')
+	\item Square each of those residuals, and add all the residuals together
+	\item Repeat steps 1 - 3 until you have found the line that \textbf{minimizes the sum of squared residuals}
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear regression model}
+The steps again, but using our model terminology:
+\begin{enumerate}
+	\item Draw a line $\Rightarrow$ Choose $\hat{\beta_0}$ and $\hat{\beta_1}$ (the ``hat'' represents a guess)
+	\item Calculate the distance from each point to the line (call it a ``residual'') $\Rightarrow$ Calculate $\hat{u_i} = y_i - \hat{\beta_0}-\hat{\beta_1}x_i$
+	\item Square each of those residuals, and add all the residuals together $\Rightarrow$ Calculate $\sum_i^N\hat{u_i}^2$
+	\item Repeat steps 1 - 3 until you have found the line that \textbf{minimizes the sum of squared residuals}
+\end{enumerate}
+Note that $\hat{u_i}$ is a residual, and $u_i$ is an error. We calculate the residuals, and thus that's what we will work with.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+\begin{center}
+	\includegraphics[scale = 0.075]{resids.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+So why are we squaring the error term?
+The error is naturally positive for points above our line, and negative for points below the line. 
+\begin{center}
+	\includegraphics[scale = 0.06]{hori_resid.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+\begin{center}
+	\includegraphics[scale = 0.06]{woah_resid.png}
+\end{center}
+The total error here would be very negative. More negative than the previous horizontal line.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Something is obviously wrong. Our lines do not describe the data well at all. The problem is that negative errors are good and positive errors are bad when we minimize. The solution is to make all errors positive, which we can do by:
+\begin{itemize}
+	\item Taking the absolute value: $|\hat{u_i}|$
+	\item Squaring each error: $\hat{u_i}^2$
+\end{itemize}
+Both would work, but if we square each error, we get the added bonus that large errors become even larger and are even more undesirable than before we square. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Once we square the errors, and add, we see that the right is much much better than the left:
+\begin{center}
+	\includegraphics[scale = 0.045]{linear3.png}
+	\includegraphics[scale=0.045]{linear.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Remember the true model is:
+$$y_i = \beta_0 + \beta_1x_i + u_i$$
+But we never observe the true model. We \textbf{estimate} it as:
+$$y_i = \hat{\beta_0} + \hat{\beta_1}x_i + u_i$$
+and we can use the model to predict $y_i$:
+$$\hat{y}_i = \hat{\beta_0} + \hat{\beta_1}x_i$$
+and finally calculate the residuals:
+$$\hat{u}_i = y_i - \hat{y}_i$$
+
+
+Let's look at the excel sheet associated with this lecture to see what these numbers look like.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Quick vocab:
+\begin{itemize}
+	\item Total sum of squares (SST): $\sum_{i=1}^n (y_i - \bar{y})^2$
+	\item Sum of squared errors (SSE): $\sum_{i=1}^n (\hat{y_i} - \bar{y})^2$
+	\item Sum of squared residuals (SSR): $\sum_{i=1}^n (\hat{u_i})^2$
+\end{itemize}
+$$SST = SSE + SSR$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Remember the best regression line is the one that minimizes the \textbf{sum of squared residuals (SSR)}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Okay. Now time to stop guessing, and find the best line directly.
+\begin{center}
+	\includegraphics[scale = 0.3]{fry.jpg}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+We want to minimize the sum of squared-residuals:
+$$\min_{\beta_0, \beta_1} \sum_{i=1}^n (\hat{u_i})^2= \min_{\beta_0, \beta_1} \sum_{i=1}^n (y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2$$
+How do we minimize a function?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+First we take the FOC wrt $\beta_0$:
+\begin{eqnarray}
+	\nonumber \frac{\partial}{\partial \hat{\beta_0}} \sum_{i=1}^n (y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2 \\
+	\nonumber = -2\sum_{i=1}^n (y_i-\hat{\beta_0}-\hat{\beta_1}x_i) = 0 \\
+	\nonumber \Rightarrow \sum_{i=1}^n(\beta_0) = \sum_{i=1}^n (y_i) - \sum_{i=1}^n (\hat{\beta_1}x_i)  \\
+	\nonumber \Rightarrow N\beta_0 =  \sum_{i=1}^n (y_i) - \hat{\beta_1}\sum_{i=1}^n (x_i) \\
+	\nonumber \Rightarrow \beta_0 = \frac{1}{n}\sum_{i=1}^n (y_i) - \frac{1}{n}\hat{\beta_1}\sum_{i=1}^n (x_i) \\
+	\nonumber \Rightarrow \beta_0 = \bar{y} - \hat{\beta_1}\bar{x}
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Now we take the FOC wrt $\beta_1$:
+\begin{eqnarray}
+	\nonumber \frac{\partial}{\partial \hat{\beta_1}} \sum_{i=1}^n (y_i-\hat{\beta_0}-\hat{\beta_1}x_i)^2 \\
+	\nonumber = -2\sum_{i=1}^n (y_i-\hat{\beta_0}-\hat{\beta_1}x_i)x_i = 0 \\
+	\nonumber \Rightarrow \sum_{i=1}^n (y_ix_i) - \hat{\beta_0}\sum_{i=1}^n(x_i) - \hat{\beta_1}\sum_{i=1}^n(x_i)^2 = 0 \\
+	\nonumber \Rightarrow \sum_{i=1}^n (y_ix_i) - (\bar{y} - \hat{\beta_1}\bar{x})\sum_{i=1}^n(x_i) - \hat{\beta_1}\sum_{i=1}^n(x_i)^2 = 0 \\
+	\nonumber \Rightarrow \sum_{i=1}^n (y_ix_i) - \bar{y}\sum_{i=1}^n(x_i) - \hat{\beta_1}\bar{x}\sum_{i=1}^n(x_i) - \hat{\beta_1}\sum_{i=1}^n(x_i)^2 = 0 
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Continuing:
+\begin{eqnarray}
+	\nonumber \Rightarrow \sum_{i=1}^n (y_ix_i) - \bar{y}\sum_{i=1}^n(x_i) - \hat{\beta_1}\bar{x}\sum_{i=1}^n(x_i) - \hat{\beta_1}\sum_{i=1}^n(x_i)^2 = 0 \\
+	\nonumber \Rightarrow \hat{\beta_1}\bigg[\sum_{i=1}^n(x_i)^2 - \bar{x}\sum_{i=1}^n(x_i)\bigg] = \sum_{i=1}^n (y_ix_i) - \bar{y}\sum_{i=1}^n(x_i) \\
+	\nonumber \Rightarrow \hat{\beta_1} = \frac{\sum_{i=1}^n (y_ix_i) - \bar{y}\sum_{i=1}^n(x_i)}{\sum_{i=1}^n(x_i)^2 - \bar{x}\sum_{i=1}^n(x_i)} \\
+	\nonumber \Rightarrow \hat{\beta_1} = \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2 }
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+Recall that:
+\begin{eqnarray}
+	\nonumber cov(x,y) = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y}) \\
+	\nonumber var(x) = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar{x})^2
+\end{eqnarray}
+Does our derivation of $\beta_1$ look familiar now?
+\begin{eqnarray}
+	\nonumber \Rightarrow \hat{\beta_1} = \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2 }
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$\hat{\beta_1} = \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2 } = \frac{cov(X,Y)}{var(X)}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$\hat{\beta_1} = \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2 }$$
+Notice that our estimates for the model come from random variables ($X$ and $Y$). Thus, the coefficient estimates are random values themselves. So even though we get a single number (point estimate), that estimate is technically a random variable, and thus has variance and standard deviation. We can imagine, then, that estimates with small variances are good (accurate), and estimates with large variances are bad (inaccurate).
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$var(\hat{\beta_1})=\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
+$$var(\hat{\beta_0})=\frac{\sigma^2n^{-1}\sum_{i=1}^nx_i^2}{\sum_{i=1}^n(x_i-\bar{x})^2}$$
+where
+$$\sigma^2=\frac{1}{(n-2)}\sum_{i=1}^n(\hat{u_i}^2)$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$se(\hat{\beta_1})=\sqrt{var(\hat{\beta_1})}=\sqrt{\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+$$se(\hat{\beta_0})=\sqrt{var(\hat{\beta_0})}=\sqrt{\frac{\sigma^2n^{-1}\sum_{i=1}^nx_i^2}{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+where
+$$\sigma^2=\frac{1}{(n-2)}\sum_{i=1}^n(\hat{u_i}^2)$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$se(\hat{\beta_1})=\sqrt{var(\hat{\beta_1})}=\sqrt{\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+$$se(\hat{\beta_0})=\sqrt{var(\hat{\beta_0})}=\sqrt{\frac{\sigma^2n^{-1}\sum_{i=1}^nx_i^2}{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+where
+$$\sigma^2=\frac{1}{(n-2)}\sum_{i=1}^n(\hat{u_i}^2)$$
+We want \textbf{accurate} estimates. Thus, we want estimates with small standard errors. What helps make $se(\hat{\beta_1})$ small? 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+$$se(\hat{\beta_1})=\sqrt{var(\hat{\beta_1})}=\sqrt{\frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar{x})^2}}$$
+What helps make $se(\hat{\beta_1})$ small? Well, we could make the numerator tiny, the denominator huge, or both! To make the numerator tiny, we want small SSR. To make the denominator huge, we want lots of variation in our explanatory variables!
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Ordinary least squares (OLS)}
+Performing OLS guarantees that we have the smallest SSR possible, so we can't make the numerator any smaller than it is. Making the denominator big is the greatest desire of economists/data scientists: variation in the data is very, very good. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hypothesis testing in OLS}
+So we have two variables, and we estimate a simple model that results in $\hat{\beta}_0$ and $\hat{\beta}_1$. How do we know if our model good? Even if we have minimized the SSR, is the model \emph{helpful}? These are tricky questions. What \emph{is} a good model? What do we mean by good?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Hypothesis testing in OLS}
+Before drowning in questions, let's start with a simple one:
+\begin{itemize}
+	\item Is $\hat{\beta}_0$ or $\hat{\beta}_1$ significantly different from zero?
+\end{itemize}
+Since both $\hat{\beta}_0$ and $\hat{\beta}_1$ are \textbf{random variables}, we shouldn't be deceived by the point-estimates; we need to see if the \textbf{average} values of $\hat{\beta}_0$ and $\hat{\beta}_1$ are different from zero. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Hmm... testing the means of random variables. Sound familiar? We'll use the \textbf{t-test}!
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Let's focus on $\hat{\beta}_1$. Instead of comparing the means of two random variables, we are comparing $\hat{\beta}_1$ to $\beta_1$.  \\
+In a regression format, we are going to have the following hypotheses:
+\begin{itemize}
+	\item $H_0: \hat{\beta}_1 = \beta_1$
+	\item $H_1: \hat{\beta}_1 \neq \beta_1$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+But wait! It gets even \emph{more} boring and depressing! Our assumption is the model we are estimating \textbf{doesn't even exist}. So without any evidence about the true population model, we assume that $\beta_1 = 0$.
+\begin{itemize}
+	\item $H_0: \hat{\beta}_1 = 0$
+	\item $H_1: \hat{\beta}_1 \neq 0$
+\end{itemize}
+*Same for any $\beta$ in the model.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Our first random variable to perform the t-test is $\hat{\beta}_1$. The second random variable is $\beta_1 = 0$. Wait, is zero a random variable? \\
+No. \\
+It is a scalar with a sample size of one, and a variance of zero. But shhh, don't tell the t-test.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Our first random variable to perform the t-test is $\hat{\beta}_1$. The second random variable is $\beta_1 = 0$. We assume (correctly) that these two ``random variables" have unequal variances and unequal sample sizes. Recall that the t-test for this situation is:
+$$t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Let's start substituting:
+$$t = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\frac{s_1^2}{n_1} + \frac{0}{1}}}$$
+$$t = \frac{\hat{\beta}_1 - 0}{\frac{s_1}{\sqrt{n_1}}}$$
+$$t = \frac{\hat{\beta}_1}{se(\hat{\beta}_1)}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The t-test}
+Because our hypotheses are:
+\begin{itemize}
+	\item $H_0: \hat{\beta}_1 = 0$
+	\item $H_1: \hat{\beta}_1 \neq 0$
+\end{itemize}
+Our t-test is:
+$$t = \frac{\hat{\beta}_1}{se(\hat{\beta}_1)}$$
+The degrees of freedom of the test is $n-k-1$ where $k$ is the number of explanatory variables and $n$ is the number of observations. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exercise}
+Determine the degrees of freedom:
+\begin{itemize}
+	\item 400 observations: $y=\beta_0 + \beta_1x$
+	\item 20 observations: $y=\beta_0 + \beta_1x$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{t-distribution}
+Your Excel regression estimate give you t-statistics. 
+$$t_{stat}=\frac{(\hat{\beta}_1-\beta_1)}{se(\hat{\beta}_1)}$$
+To determine significance, we want to see where our t-stat lands on the t-distribution.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Find t-critical value}
+The $t_{crit}$, or t-critical value, depends on the t-distribution and thus the degrees of freedom and $\alpha$.
+You can use published tables to find the t-critical value, or Excel:
+\begin{itemize}
+	\item Two-tailed:``=TINV($\alpha$, df)''
+	\item One-tailed:``=TINV($2\cdot \alpha$, df)''
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Make decision}
+Two-tailed test: 
+\begin{itemize}
+	\item If $|t_{stat}|>t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Make decision}
+One-tailed test ($H_1:\beta_1>0$): 
+\begin{itemize}
+	\item If $t_{stat}>t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+One-tailed test ($H_1:\beta_1<0$): 
+\begin{itemize}
+	\item If $t_{stat}<-t_{crit}$: Reject null
+	\item Otherwise: Fail to reject null
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{p-value revisited}
+The p-value of a coefficient is technically:\\
+Two-tailed: $pvalue=Pr(|t_{stat}|>t_{crit})$ \\
+One-tailed, $H_1$ positive: $pvalue=Pr(t_{stat}>t_{crit})$ \\
+One-tailed, $H_1$ negative: $pvalue=Pr(t_{stat}<-t_{crit})$ \\
+We can calculate the p-value in Excel: ``=TDIST(ABS(tstat),df,tails)''
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{p-value revisited}
+\begin{itemize}
+	\item If the p-value $ < \alpha$, \textbf{reject the null}
+	\item If the p-value $ > \alpha$, \textbf{fail to reject the null}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Confidence Intervals}
+Once we choose $\alpha$ and calculate the t-critical value, we can construct a confidence interval:
+\begin{eqnarray}
+	\nonumber \bar{\beta}_1 = \hat{\beta}_1 + (t_{crit}\cdot se(\hat{\beta}_1)) \\
+	\nonumber \underline{\beta}_1 = \hat{\beta}_1 - (t_{crit}\cdot se(\hat{\beta}_1)) 
+\end{eqnarray}
+$\Rightarrow$ ``(1-$\alpha$)\% of the data lies between $\underline{\beta}_1$ and $\bar{\beta}_1$'' 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Decisions}
+Your hypothesis testing decisions should come from the t-test (and associated p-values), and the confidence interval should back this decision up.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Let's work through an example in Excel...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Key Skills}
+In this lecture, we have discussed basic linear regression. At this point, you should be able to:
+\begin{itemize}
+	\item Describe what linear regression is
+	\item Derive the slope and intercept for a simple linear regression \textbf{by hand}.
+	\item Be able to perform a simple linear regression in Excel
+	\item Be able to determine which variables are statistically significant
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
