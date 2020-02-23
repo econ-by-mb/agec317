@@ -1,0 +1,549 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+\usepackage{amsmath}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Multiple Regression}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain, noframenumbering]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression}
+Recall the example where we regressed miles-per-gallon of cars on vehicle weight. The theoretical model was:
+$$MPG_i = \beta_0 + \beta_1 weight_i + \varepsilon_i$$
+Do you really believe the weight of a car is the only important variable in predicting the MPG of a car?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression}
+Both of these vehicles weigh about 4500lbs:
+\begin{center}
+	\includegraphics[scale=0.1]{ford.png}
+	\includegraphics[scale=0.6]{tesla.jpg}
+\end{center}
+Do they have the same MPG? Our original model said: YES
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression}
+How can we improve our theoretical model to better predict MPG?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression}
+New model:
+$$MPG_i = \beta_0 + \beta_1 weight_i + \beta_2 cyl_i + \beta_3 disp_i + \varepsilon_i$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression}
+Building models with multiple explanatory (independent) variables is often much better than a univariate model.
+\begin{itemize}
+	\item Is quantity demand for Pepsi a function of \emph{only} the price?
+	\item Is the quantity supplied of electricity a function of \emph{only} the cost of production?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression: Interpretation}
+Multiple regression is a relatively simple extension of univariate linear regression: we are just adding variables! But what does this \emph{mean}? Does it change our interpretation of the variables?
+
+\textbf{Yes.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression: Interpretation}
+Recall our discussion from early in the semester about interpreting partial effects. Suppose we have the following model:
+$$y_i = \alpha + \beta x_i + \gamma z_i $$
+And suppose we move from one point on that function to another point. We will move a distance of $\Delta$:
+$$\Delta y_i =  \beta \Delta x_i + \gamma \Delta z_i$$
+The effect from a movement of $x_i$ on $y_i$ is then:
+$$\frac{\Delta y_i}{\Delta x_i} = \beta + \gamma \frac{\Delta z_i}{\Delta x_i}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression: Interpretation}
+$$\frac{\Delta y_i}{\Delta x_i} = \beta + \gamma \frac{\Delta z_i}{\Delta x_i}$$
+As we let the change ($\Delta$) become very very small, we get:
+$$\frac{\partial y_i}{\partial x_i} = \beta + \gamma \frac{\partial z_i}{\partial x_i}$$
+So the partial effect of $x_i$ on $y_i$ in a multiple regression framework is $\beta$ \textbf{if} $z_i$ is held constant so there is no change.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression: Interpretation}
+In our MPG model:
+$$MPG_i = \beta_0 + \beta_1 weight_i + \beta_2 cyl_i + \beta_3 disp_i + \varepsilon_i$$
+We say that $\beta_1$ is the partial effect of vehicle weight on MPG, \textbf{holding the number of cylinders and engine size constant}. In our naive model:
+$$MPG_i = \beta_0 + \beta_1 weight_i + \varepsilon_i$$
+$\beta_1$ is the partial effect, but we aren't holding anything constant! That means the estimated effect could be because of weight, or something else we aren't observing.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Multiple regression: Interpretation}
+\begin{center}
+	\includegraphics[scale = 0.4]{picard.jpg}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation encore}
+Last lecture, we used calculus to show that a model of the form:
+$$y_i = \beta_0 + \beta_1x_i$$
+is best estimated as the minimization of the sum of squared residuals, resulting in the following parameter estimates:
+\begin{eqnarray*}
+	\hat{\beta}_0 &=& \bar{y} - \hat{\beta}_1\bar{x} \\
+	\hat{\beta}_1 &=& \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n(x_i - \bar{x})^2}
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation encore}
+In this lecture, we want to perform linear regression on a more complicated model:
+$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \cdots + \beta_nx_{ni}$$
+...and we want to be explicit about the assumptions we make when we run regressions. We also want to apply multiple to regression in a meaningful way.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Suppose we start with a general multivariate regression model:
+$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \cdots + \beta_nx_{ni}$$
+The \textbf{residual} associated with an estimation of the above true model is:
+\begin{eqnarray*}
+	y_i - \hat{y}_i &=& y_i - (\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \cdots + \hat{\beta}_nx_{ni}) \\
+	&=& \hat{u}_i
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Our optimization problem is then:
+$$\min_{\hat{\beta}_0,\cdots , \hat{\beta}_n} [y_i - (\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \cdots + \hat{\beta}_nx_{ni})]$$
+If we have a model with 10 variables, that means we will have 11 FOCs... 
+
+Solving a system of 11 equations with 11 unknowns. Does that sound fun?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Lucky for us, we can use \textbf{linear algebra} to solve for the 11 coefficients in the model.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Remember this?
+\begin{center}
+\includegraphics[scale=0.4]{excel_mat.png} \\
+$\downarrow$ \\
+\vspace{0.5cm}
+$\begin{bmatrix}  
+	1 & 91 & 89 \\ 
+	2 & 79 & 24 \\ 
+	3 & 99 & 100 
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Let's derive the optimal estimates for $\hat{\beta}_0, \cdots , \hat{\beta}_k$. Some assumptions before we start:
+\begin{itemize}
+	\item The true model is: $y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \cdots + \beta_kx_{ki}$
+	\item The model has $k+1$ unknowns: all slope coefficients plus the intercept. Let $k+1=j$.
+	\item There are $n$ observations
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+\begin{center}
+$\begin{matrix}  
+	y & x_{1} & x_{2}  & \cdots & x_{k}\\ 
+	45 & 300 & 0 & \cdots & 10\\ 
+	100 & 300 & 15 & \cdots & 5\\ 
+	80 & 280 & 10 & \cdots & 15
+\end{matrix}$ \\
+$\downarrow$
+\begin{eqnarray*}
+	45 = 300x_{1i} + 0x_{2i} + \cdots + 10x_{ki} + u_i \\
+	100 = 300x_{1i} + 15x_{2i} + \cdots + 5x_{ki} + u_i  \\
+	80 = 280x_{1i} + 10x_{2i} + \cdots + 15x_{ki} + u_i  
+\end{eqnarray*}
+$\downarrow$
+$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \cdots + \beta_kx_{ki}+ u_i$$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+\begin{center}
+$Y = \begin{bmatrix}  
+	y_1\\ 
+	y_2\\ 
+	\vdots \\ 
+	y_n
+\end{bmatrix}$,
+$\beta = \begin{bmatrix}  
+	\beta_0\\
+	\beta_1\\ 
+	\beta_2\\ 
+	\vdots \\ 
+	\beta_k
+\end{bmatrix}$,
+$U = \begin{bmatrix}  
+	u_1\\ 
+	u_2\\ 
+	\vdots \\ 
+	u_n
+\end{bmatrix}$, \\
+$X = \begin{bmatrix}  
+	1 & x_{11} & x_{12} & x_{13} & \cdots & x_{1k} \\
+	1 & x_{21} & x_{22} & x_{23} & \cdots & x_{2k} \\
+	1 & x_{31} & x_{32} & x_{33} & \cdots & x_{3k} \\
+	\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\ 
+	1 & x_{n1} & x_{n2} & x_{n3} & \cdots & x_{nk} 
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+In matrix form:
+\begin{eqnarray*}
+	Y &=& X\beta + U \\
+	(n\times 1) &=& (n\times j)(j\times 1) + (n\times 1)
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Example:
+\begin{center}
+$Y = \begin{bmatrix}  
+	45\\ 
+	100\\ 
+	80
+\end{bmatrix}$,
+$\beta = \begin{bmatrix}  
+	\beta_0\\
+	\beta_1\\ 
+	\beta_2\\ 
+	\beta_3
+\end{bmatrix}$,
+$U = \begin{bmatrix}  
+	u_1\\ 
+	u_2\\  
+	u_3
+\end{bmatrix}$, \\
+$X = \begin{bmatrix}  
+	1 & 300 & 0 & 10\\
+	1 & 300 & 15 & 5\\
+	1 & 280 & 10 & 15
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Example:
+\begin{center}
+$Y=X\beta + U$ \\
+$\begin{bmatrix}  
+	45\\ 
+	100\\ 
+	80
+\end{bmatrix} =$
+$\begin{bmatrix}  
+	1 & 300 & 0 & 10\\
+	1 & 300 & 15 & 5\\
+	1 & 280 & 10 & 15
+\end{bmatrix}$
+$\begin{bmatrix}  
+	\beta_0\\
+	\beta_1\\ 
+	\beta_2\\ 
+	\beta_3
+\end{bmatrix} +$
+$\begin{bmatrix}  
+	u_1\\ 
+	u_2\\  
+	u_3
+\end{bmatrix}$ \vspace{1cm}
+
+$Y=X\hat{\beta} + U$ \\
+$\begin{bmatrix}  
+	45\\ 
+	100\\ 
+	80
+\end{bmatrix} =$
+$\begin{bmatrix}  
+	1 & 300 & 0 & 10\\
+	1 & 300 & 15 & 5\\
+	1 & 280 & 10 & 15
+\end{bmatrix}$
+$\begin{bmatrix}  
+	\hat{\beta}_0\\
+	\hat{\beta}_1\\ 
+	\hat{\beta}_2\\ 
+	\hat{\beta}_3
+\end{bmatrix} +$
+$\begin{bmatrix}  
+	u_1\\ 
+	u_2\\  
+	u_3
+\end{bmatrix}$
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+In matrix form, note that:
+$$Y=X\beta + U$$
+$$\hat{Y}=X\hat{\beta}$$
+$$\hat{U} = Y - \hat{Y} = Y - X\hat{\beta}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Using linear algebra this time, let's take another look at our minimization problem:
+$$\min_{\hat{\beta}}\hat{U}'\hat{U} = \min_{\hat{\beta}} (Y-X\hat{\beta})'(Y-X\hat{\beta}) $$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+\begin{eqnarray*}
+	\min\hat{U}'\hat{U} &=&  \min (Y-X\hat{\beta})'(Y-X\hat{\beta}) \\
+	&=& \min (Y'-\hat{\beta}'X')(Y-X\hat{\beta}) \\
+	&=& \min Y'Y - Y'X\hat{\beta} - \hat{\beta}'X'Y+\hat{\beta}X'X\hat{\beta} \\
+	&=& \min Y'Y -2\hat{\beta}'X'Y + \hat{\beta}X'X\hat{\beta}
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+Now we need to take the FOC wrt the $\hat{\beta}$ vector:
+\begin{eqnarray*}
+	\frac{\partial Y'Y -2\hat{\beta}'X'Y + \hat{\beta}X'X\hat{\beta}}{\partial \hat{\beta}} &=& 0 \\
+	0 -2X'Y +2X'X\hat{\beta} &=& 0 \\
+	2X'X\hat{\beta} &=& 2X'Y \\
+	X'X\hat{\beta} &=& X'Y \\
+	(X'X)^{-1}X'X\hat{\beta} &=& (X'X)^{-1}X'Y \\
+	\hat{\beta} &=& (X'X)^{-1}X'Y 
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+\begin{eqnarray*}
+	\hat{\beta} &=& (X'X)^{-1}X'Y 
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Derivation of OLS: Multiple Regression}
+See the ``matrixOLS.xlsx'' for an example of how we can use our new equation for $\hat{\beta}$.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+When we perform regression, we minimize the sum of squared residuals. That results in the best fit, right? Well, it results in the best fit \emph{given the model specification}. If we add or subtract variables, the SSR could go up or down, and if it goes down (decreases) the model fit improves. \\
+But what about just looking at a single regression. Can we assess the goodness of fit without comparing to another model? 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+Recall the following:
+\begin{eqnarray}
+	\nonumber SST = \sum_{i=1}^n (y_i-\bar{y})^2 \\
+	\nonumber SSE = \sum_{i=1}^n (\hat{y}_i-\bar{y})^2 \\
+	\nonumber SSR = \sum_{i=1}^n (y_i-\hat{y}_i)^2
+\end{eqnarray} 
+Recall that: $SST = SSE + SSR$.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+$$R^2=\frac{SSE}{SST} = 1-\frac{SSR}{SST}$$
+``R-squared'' is the fraction of the sample variation of the dependent variable explained by the independent variable(s). $R^2$ is bounded by 0 and 1, and as $R^2\rightarrow 1$, the model does a better job at ``explaining'' the dependent variable.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+$$R^2=\frac{SSE}{SST} = 1-\frac{SSR}{SST}$$
+Recall that $SSR=\sum_{i=1}^n (y_i-\hat{y}_i)^2$. If we add additional explanatory variables, SSR will fall (as long as there is some error in the model), which suggests that $R^2$ improves with more variables. Indeed it does. We can even drive $R^2$ to 1 if we include as many variables as observations!
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+We can also look at \textbf{adjusted-$R^2$}:
+$$\bar{R}^2= 1-\frac{\frac{SSR}{n-k-1}}{\frac{SST}{n-1}}$$
+where $n$ is the number of observations, and $k$ is the number of independent (explanatory) variables. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Technical Model Fit}
+How you should use $R^2$ and $\bar{R}^2$:
+\begin{enumerate}
+	\item Is the model a multivariate regression?
+		\begin{itemize}
+			\item Yes: Use $\bar{R}^2$, move to (2)
+			\item No: Use $R^2$, move to (2)
+		\end{itemize}
+	\item Do you have another model you are comparing to?
+		\begin{itemize}
+			\item Yes: the model with the higher $R^2$ or $\bar{R}^2$ is better.
+			\item No: check to make sure the $R^2$ or $\bar{R}^2$ is not low$^*$.
+		\end{itemize}
+\end{enumerate}
+$^*$ ``Low" is subjective; if the $R^2$ or $\bar{R}^2$ is 0.01, that's not great. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Assumptions}
+When we run a regression, we are making implicit assumptions. These are:
+\begin{itemize}
+	\item \textbf{Linear in parameters}: the true (population) model \emph{can} be written as:
+			$$y=\beta_0 + \beta_1x_1 + \cdots + \beta_kx_k$$
+	\item \textbf{Random sampling}: the sample we use for regression is randomly selected from the population of interest. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Assumptions}
+Continued:
+\begin{itemize}
+	\item \textbf{No perfect co-linearity}: there can be no exact relationship between independent (explanatory) variables.
+	\item \textbf{Zero conditional mean}: the expected value (average) of the error term is zero, given the values of the independent variables. 
+	\item \textbf{Homoskedasticity}: the variance of the error term is constant, and \emph{not} a function of anything.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Theorems}
+Under the first four assumptions, $E[\hat{\beta}_j]=\beta_j$, meaning the OLS estimate is \textbf{unbiased}. \\
+Under all five assumptions, for any other type of estimate that is linear and unbiased, $\tilde{\beta}_j$, $var(\hat{\beta}_j)\leq var(\tilde{\beta}_j)$, meaning any other type of estimator is not as \textbf{efficient} (has higher variance) than our $\hat{\beta}_j$ from OLS. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression: Theorems}
+The first theorem (and thus four assumptions) tells us our OLS estimate $\hat{\beta}_j$ is linear and unbiased, and the second theorem tells us we have the \emph{best} linear and unbiased estimator. That is, our estimate is BLUE. This second theorem is better known as the \textbf{Gauss-Markov Theorem}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Sources of bias}
+What if we include irrelevant variables or forget to include important ones? Will our estimates be affected?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Including irrelevant variables}
+Including irrelevant variables does not affect the regression and is not a source of bias. Suppose:
+$$y=\beta_0 + \beta_1x + \beta_2z + \varepsilon$$
+where $\beta_2=0$ in the population model. \\
+\textbf{Including $z$ in the regression does not affect the identification of $\beta_1$.}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Excluding relevant variables}
+Excluding relevant variables \textbf{does} affect the regression and is a source of bias. Suppose:
+$$y=\beta_0 + \beta_1x + \beta_2z + \varepsilon$$
+And suppose $\beta_2\neq 0$ and $corr(x,z)\neq 0$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Excluding relevant variables}
+Now suppose instead of:
+$$y=\beta_0 + \beta_1x + \beta_2z + \varepsilon$$
+We estimate:
+$$y=\beta_0 + \beta_1x + \varepsilon$$
+And $z = \delta_0 + \delta_1x + u$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Excluding relevant variables}
+\begin{eqnarray}
+	\nonumber \Rightarrow y&=&\beta_0 + \beta_1x + \beta_2(\delta_0 + \delta_1x + u) + \varepsilon \\
+	\nonumber y&=& (\beta_0 + \beta_2\delta_0) + (\beta_1 + \beta_2\delta_1)x + (\beta_2u+\varepsilon)
+\end{eqnarray}
+$\Rightarrow bias=\hat{\beta_1}-\beta_1=\beta_1 + \beta_2\delta_1-\beta_1=\beta_2\delta_1$ \\
+This type of bias is known as \textbf{omitted variable bias}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Direction of OVB}
+\begin{center}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lll}
+\emph{if}             & $corr(x,z)>0$ or $\delta_1>0$ & $corr(x,z)$ or $\delta_1<0$ \\ \hline
+$\beta_2>0$ & $\beta_2\delta_1>0$: Positive bias & $\beta_2\delta_1<0$: Negative bias\\
+ & &  \\
+$\beta_2<0$ & $\beta_2\delta_1<0$: Negative bias  & $\beta_2\delta_1>0$: Positive bias \\  \hline
+\end{tabular}}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{OVB}
+Remember:
+\begin{itemize}
+	\item \textbf{Including irrelevant variables is fine.}
+	\item \textbf{Excluding relevant variables is not fine.}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression F-test}
+In a multivariate regression, we can test the \emph{joint} significance of the model:
+$$y=\beta_0 + \beta_1x + \beta_2z$$
+Are \emph{any} of the variables significant? We can use an F-test for this.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression F-test}
+$$y=\beta_0 + \beta_1x + \beta_2z$$
+\begin{eqnarray}
+	\nonumber H_0: \beta_1=\beta_2=0 \\
+	\nonumber H_1: any \quad \beta_j\neq 0
+\end{eqnarray}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression F-test}
+The F-statistic is calculated from the regression results as:
+$$F_{stat}=\frac{SSE/k}{SSR/(n-k-1)}=\frac{R^2/k}{(1-R^2)/(n-k-1)}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression F-test}
+The $F_{stat}$ follows a (k, n-k-1) distribution:
+\begin{center}
+	\includegraphics[scale=0.5]{fdist.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Regression F-test}
+The hypothesis decision follows a similar process to the t-test:
+\begin{enumerate}
+	\item Form your null hypothesis
+	\item Form the alternative hypothesis
+	\item Compute F-stat
+	\item Use critical value to make decision to reject or fail-to-reject null. 
+\end{enumerate}
+(1) is always ``everything equal to zero'', and (2) is always ``something is not zero'', at least in this class
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Excel}
+Now let's apply multiple regression to a few models...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Key Skills}
+In this lecture, we discussed how to estimate and interpret a multivariate regression, and some major assumptions and sources of bias. At this point, you should be able to:
+\begin{itemize}
+	\item Perform multivariate regression in Excel without using the Data Analysis ToolPak
+	\item Perform multivariate regression in Excel using the Data Analysis ToolPak
+	\item Interpret the results from a multivariate regression
+	\item Confirm that a multivariate regression is BLUE
+	\item Defend a multivariate regression from potential sources of bias
+	\item Test for the joint significance of a multivariate regression
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
