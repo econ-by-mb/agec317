@@ -13,9 +13,11 @@ As module lectures are developed, they will appear here:
 * Module 1: [Statistics review](https://github.com/econ-by-mb/agec317/blob/master/Module%201%20-%20Statistics/Statistics%20Review.pdf)
 * Module 2: [Calculus review](https://github.com/econ-by-mb/agec317/blob/master/Module%202%20-%20Calculus/Calculus%20Review.pdf)
 * Module 3: [Linear regression](https://github.com/econ-by-mb/agec317/blob/master/Module%203%20-%20Linear%20Regression/Linear%20Regression.pdf)
+* Module 4: [Multiple regression](https://github.com/econ-by-mb/agec317/blob/master/Module%203%20-%20Multiple%20Regression/Multiple%20Regression.pdf)
 
 ## Problem Sets
 As module problem sets are developed, they will appear here. If you are an instructor and would like the answer keys, please [contact me](mailto:black.michael@tamu.edu).
 * Problem Set 1: [Statistics review](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS1.pdf)
 * Problem Set 2: [Calculus review](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS2.pdf)
 * Problem Set 3: [Linear Regression](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS3.pdf)
+* Problem Set 4: [Multiple Regression](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS4.pdf)
