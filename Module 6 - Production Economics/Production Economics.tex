@@ -1,0 +1,299 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+\usepackage{amsmath}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Applied Production Economcis}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain, noframenumbering]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Where are we?}
+We can now build and interpret simple and complicated models. It is now time to apply this technical skill to real-world problems. \\
+We start with the economics of \emph{production}.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Quick review: 
+\begin{itemize}
+	\item \textbf{Production} is the process of using inputs to create a good or service that has economic value to consumers.
+	\item A \textbf{production function} is the mathematical relationship that describes a firm's ability to transform inputs into output.
+	\item The \textbf{short-run} time horizon is any time period where there are some fixed costs.
+	\item The \textbf{long-run} time horizon is any period where all costs are variable.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+A \textbf{production function}:
+$$q = f(x,y)$$
+where $q$ is output, $x$ and $y$ are inputs.
+$$MPP_x = \frac{\partial q}{\partial x}$$
+$MPP_x$ is the \emph{marginal physical product of x}: it measures the change in output for a unit increase in the $x$ input.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+$$APP_x = \frac{q}{x}$$
+$APP_x$ is the \emph{average physical product of x}: it is the ratio of total output of $q$ to amount of $x$ input.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Stages of Production:
+\begin{center}
+	\includegraphics[scale=0.25]{stages.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Stages of Production (for a single input):
+\begin{itemize}
+	\item Stage 1: MPP$>$APP
+	\item Stage 2: APP$>$MPP \emph{and} MPP$>$0
+	\item Stage 3: MPP $<$ 0
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Operating in Stage 1 of production is not desirable, because increasing input will still, on average, result in increased output. That's good. Stage 3 is not good because increasing output will actually \emph{decrease} output. Stage 2 is good. We want to operate somewhere in Stage 2.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+The \emph{elasticity of production} for an input $x$ is:
+$$\varepsilon_x = \frac{\partial q}{\partial x}\cdot\frac{x}{y}=MPP_x \cdot \frac{1}{APP_x}=\frac{MPP_x}{APP_x}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+The \textbf{Law of Diminishing Returns} rules in production: eventually, you'll get less ``bang for the buck", and get to a point where adding inputs decreases output. Think about trying to use 4,000 lemons to create lemonade for a small lemonade stand. The 4,001st lemon isn't going to help you; it will just bury you in lemons and hurt production. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Suppose we have production with two inputs: $q = f(x,y)$. What is the optimal level of production? More precisely, how do we maximize output?
+\begin{eqnarray*}
+	q = f(x,y) \\
+	\frac{\partial q}{\partial x} = \frac{\partial f(\cdot)}{\partial x} = MPP_x = 0 \\
+	\frac{\partial q}{\partial y} = \frac{\partial f(\cdot)}{\partial y} = MPP_y = 0 \\
+\end{eqnarray*}
+Without constraints, to maximize production we would set the marginal physical product of both inputs to zero.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Okay, but how do we know what the production function looks like? Everything depends on this. \\
+\vspace{2cm}
+It is up to us to estimate.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+If production typically looks like this:
+\begin{center}
+	\includegraphics[scale=0.25]{stages.png}
+\end{center}
+...what kind of model should we specify?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+\begin{itemize}
+	\item A quadratic model allows us to estimate and upside down ``U-shaped" curve! Perfect!
+	\item We can also use a ``log-log" model, like Cobb-Douglas. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Quadratic model:
+$$q_i = \beta_0 + \beta_1capital_i + \beta_2capital_i^2 + \beta_3labor_i + \beta_4labor_i^2+u_i$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Max-production with quadratic model:
+\begin{eqnarray*}
+	q_i = \beta_0 + \beta_1capital_i + \beta_2capital_i^2 + \beta_3labor_i + \beta_4labor_i^2+u_i	\\
+	\frac{\partial q}{\partial capital} = \beta_1 + 2\beta_2capital_i = 0 \\
+	\frac{\partial q}{\partial labor} = \beta_3 + 2\beta_4labor_i = 0
+\end{eqnarray*}
+\begin{eqnarray*}
+	\Rightarrow captial_i^* = \frac{-\beta_1}{2\beta_2} \\
+	\Rightarrow labor_i^* = \frac{-\beta_3}{2\beta_4} 
+\end{eqnarray*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Log-log model:
+\begin{eqnarray*}
+	q_i = AK^\alpha L^\beta \\
+	\Rightarrow \ln(q_i) = \ln(A) + \alpha \ln(K) + \beta \ln(L) + u_i
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Max-production with log-log model:
+\begin{eqnarray*}
+	\ln(q_i) = \ln(A) + \alpha \ln(K) + \beta \ln(L) + u_i \\
+	q_i = AK^\alpha L^\beta \\
+	\frac{\partial q}{\partial K} = \alpha AK^{1-\alpha}L^\beta = 0 \\
+	\frac{\partial q}{\partial L} = \beta AK^{\alpha}L^{1-\beta} = 0 
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+The optimal solution now is a bit more complicated:
+\begin{eqnarray*}
+	\alpha AK^{1-\alpha}L^\beta = \beta AK^{\alpha}L^{1-\beta} \\
+	 \Rightarrow K^* = \frac{\beta}{\alpha}L \\
+	 \Rightarrow L^* = \frac{\alpha}{\beta}K 
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+Of course, both of these examples are without constraints. If we add constraints, then we have a constrained optimization problem where we need to use a Lagrangian to solve.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Production economics}
+To summarize, we:
+\begin{enumerate}
+	\item Observe data
+	\item Use OLS to predict an appropriate model
+	\item Use OLS regression results to form an optimization problem
+	\item Solve the optimization problem
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Costs and profit}
+Okay, but our goal is seldom to simply maximize output. We may want to minimize costs or maximize profit.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Costs and profit}
+\begin{itemize}
+	\item \textbf{Total value product} of inputs: $TVP = P\cdot f(x,y)$, where $P$ is the price of the sold output.
+	\item \textbf{Marginal value product} of input $x$: $MVP_x = P\cdot MPP_x$, where $P$ is the price of the sold output.
+	\item \textbf{Average value product} of input $x$: $AVP_x = P\cdot APP_x$, where $P$ is the price of the sold output.
+	\item \textbf{Total cost} function: $c = r_xx + r_yy+b$, where $r_x$ is the per-unit cost of input $x$ (same for $y$), and $b$ is some fixed cost.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Costs and profit}
+\begin{itemize}
+	\item \textbf{Profit}: $\pi = 	P\cdot q  - r_xx - r_yy-b$, where $q$ is the estimated production function. 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Costs and profit}
+Profit function with quadratic form:
+$$\pi = 	P\cdot (\color{red} \beta_0 + \beta_1K_i + \beta_2K_i^2 + \beta_3 L_i + \beta_4 L_i^2\color{black})  - r_KK - r_LL-b$$
+Where the \color{red} red \color{black} portion comes from an estimated econometric model.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+\begin{center}
+	\includegraphics[scale = 0.3]{tp.png}
+\end{center}
+Consider the production process for toilet paper...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Inputs:
+\begin{itemize}
+	\item Human labor
+	\item Electricity to run machines
+	\item Recycled paper
+	\item Glue
+	\item Bleach
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+\begin{eqnarray*}
+	\pi = P\cdot (\beta_0 + \beta_1electricity_i + \beta_2electricity_i^2 + \beta_3 paper_i + \beta_4 paper_i^2) \\
+	- r_{paper}paper - r_{electricity}electricity - b
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Let's choose the optimal amount of electricity and recycled paper to use to maximize profit, \emph{without any constraints}:
+\begin{eqnarray*}
+	\frac{\partial \pi}{\partial electricity} = P(\beta_1 + 2\beta_2)-r_{electricity} = 0 \\
+	\Rightarrow electricity^* = \frac{\frac{r_{electricity}}{P}-\beta_1}{2\beta_2}
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+...we can find the same optimal input use for recycled paper as well. Now what if we have a budget constraint? 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Now let's solve a real-world production problem.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
+Suppose you work for a large international agribusiness corporation: \emph{Lentils-n-More} owns a large lentil operation in India. Your firm has run an experiment on some of its fields. Each field receives a randomly selected amount of nitrogen fertilizer, and a randomly selected amount of seed sachets to plant in the field. Some farms are allowed to operate totally independently, while others must report the entire growing process to \emph{Lentils-n-More}. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problem}
+Your goal is to determine the profit-maximizing level of nitrogen fertilizer and seed sachets to purchase for your India operation. \\
+Your secondary goal is to confirm that your India operation is in Stage II production, and not Stage I or III.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data Description}
+\begin{itemize}
+	\item Yield: yield of lentils, in bushels per ha
+	\item Nitrogen: amount of nitrogen fertilizer concentrate, in gallons
+	\item SeedPop: the seed population, measured in number of seed sachets available locally
+	\item Ownership: =1 if operation is monitored by your firm, =0 if no oversight
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Solution: Step-by-step}
+\begin{itemize}
+	\item Estimate model that is quadratic in both inputs, plus interaction, plus dummy variable
+	\item Use results and current prices to predict profit
+	\item Solve for optimal by hand and substitute parameters, or use Solver in Excel
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
