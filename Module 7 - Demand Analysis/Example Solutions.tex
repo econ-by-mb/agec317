@@ -1,0 +1,53 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple LaTeX document having a more compact look
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{lipsum}
+\usepackage{graphicx}
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+
+\title{Demand Analysis}
+\author{Lecture Answers}
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\section*{Example 1: Movie Tavern}
+\begin{enumerate}
+	\item Recall the general formula for elasticity: $\epsilon_{y,x} = \frac{\partial y}{\partial x}\cdot \frac{x}{y}$. Thus, the own-price elasticity is: $\epsilon_{q,p} = \frac{\partial q}{\partial p}\cdot \frac{p}{q} = -5000\cdot\frac{p}{q}$.
+	\item In the general form, we are missing an exact value of p and q to evaluate the elasticity. The p is given here as 8. To find q, plug in the remaining values: $q = 7000 - 5000(8) + 6000(10) + 150(60) = 36000$. Then, $\epsilon_{q,p} = -5000\cdot\frac{8}{36000} = -1.11$.
+	\item The absolute value of own-price elasticity of demand is greater than 1, so demand is elastic.
+\end{enumerate}
+
+\section*{Example 2: Fly-Fishing Reel}
+\begin{enumerate}
+	\item Recall that $p^* = \frac{MC}{\bigg(1 + \frac{1}{\epsilon_{q,p}}\bigg)}$. Then the optimal price in this case is: $p^* = \frac{25}{\bigg(1 - \frac{1}{2}\bigg)} = $\$50
+\end{enumerate}
+
+\section*{Example 3: BBQ}
+\begin{enumerate}
+	\item Own-price: for a 1\% increase in Rudy's BBQ price, quantity demanded is expected to decrease by 1.5\%. Cross-price: for a 1\% increase in Fargo's BBQ price, quantity demanded of Rudy's BBQ is expected to increase by 1.2\%. Income: for a 1\% increase in income for an individual, that individual is expected to demand more Rudy's BBQ by 0.01\%. 
+	\item Because own-price elasticity is -1.5, we observe that demand for Rudy's is elastic. 
+	\item Because demand is elastic, we know we are operating where marginal revenues are positive, and thus if we reduce prices, our revenues will increase. If the manager of Rudy's wanted to increase revenues for the restaurant, s/he should consider a sales promotion. 
+	\item The cross-price elasticity of Rudy's and Fargo's is positive. Thus, the two are substitute goods. 
+	\item Because the income elasticity is greater than zero but less than one, we classify Rudy's as a necessary good. Personally, I don't believe it. What about C\&J, Fargo's, J. Cody's, or All the King's Men? My initial thought would be to classify Rudy's as an inferior good. But this is the beauty of real economics! If you don't believe the results, or something doesn't seem right, find whoever made the calculation, ask to see their data, and perform the calculations yourself. 
+\end{enumerate}
+
+    
+% Turn on when you have a .bib file in your directory
+% \bibliography{file_name.bib}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

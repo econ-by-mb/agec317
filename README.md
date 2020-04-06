@@ -15,6 +15,7 @@ As module lectures are developed, they will appear here:
 * Module 3: [Linear regression](https://github.com/econ-by-mb/agec317/blob/master/Module%203%20-%20Linear%20Regression/Linear%20Regression.pdf)
 * Module 4: [Multiple regression](https://github.com/econ-by-mb/agec317/blob/master/Module%204%20-%20Multiple%20Regression/Multiple%20Regression.pdf)
 * Module 5: [Model Specifications](https://github.com/econ-by-mb/agec317/blob/master/Module%205%20-%20Model%20Specifications/Model%20Specifications.pdf)
+* Module 6: 
 
 ## Problem Sets
 As module problem sets are developed, they will appear here. If you are an instructor and would like the answer keys, please [contact me](mailto:black.michael@tamu.edu).

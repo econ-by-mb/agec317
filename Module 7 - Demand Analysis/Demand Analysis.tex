@@ -1,0 +1,381 @@
+% Michael Black, Texas A&M University, Department of Agricultural Economics
+% Template for a simple Beamer presentation using TAMU colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+\bibliographystyle{apalike}
+\usetheme{boxes}
+%Use the following theme for more color:
+\usetheme{metropolis}
+\usepackage{amsmath}
+
+\definecolor{maroon}{RGB}{80,0,0}
+\definecolor{tamwhite}{RGB}{255,255,255}
+\definecolor{tamyellow}{RGB}{252,227,0}
+\definecolor{tamred}{RGB}{228,0,43}
+\definecolor{tamgrey}{RGB}{112,115,115}
+
+\setbeamercolor{title}{fg = maroon}
+\setbeamercolor{frametitle}{fg = tamwhite, bg = maroon}
+\setbeamercolor{structure}{fg = tamgrey, bg = tamyellow}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% Note, to include a LaTeX object (like output table), use:
+% \input{file_name.tex}
+% To include a graph or image, use:
+% \includegraphics[scale=0.5]{file_name.png}
+
+\title{Applied Demand Analysis}
+%\author{Michael Black\inst{1}}
+%\institute[]{
+ %   \inst{1}%
+  %  Department of Agricultural Economics\\
+   % Texas A\&M University
+%}
+\date{AGEC 317: Economic Analysis for Agribusiness Management \\ Instructor: Michael Black}
+
+\titlegraphic{\begin{flushright} \vspace{6.5cm} \includegraphics[width=1.5cm]{agec.png} \end{flushright}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+\textbf{Quantity demand} is the quantity of a good or service that consumers are willing and able to purchase under given economic conditions. An individual's demand of a good is a result of utility maximization. \\
+\textbf{Market demand} is the summation of individual demand curves across all consumers in a market. \\
+Factors affecting demand:
+\begin{itemize}
+	\item Own-price (on quantity demanded)
+	\item Other goods' prices
+	\item Expectations
+	\item Tastes and preferences
+	\item Many other potential factors
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+...but you know all of that. Our job here is to try to \emph{estimate} a demand curve. How do we do that? How would you estimate the demand for cars:
+\begin{center}
+	\includegraphics[scale = 0.5]{autodemand.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+Things you would need in an ideal world:
+\begin{itemize}
+	\item Lots of variation in price
+	\item Lots of people facing different prices
+	\item No feedback between price and quantity
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+One of the fundamental problems with estimating a demand curve is that we rarely see customers facing a large variation in prices. Typically, we observe \emph{market equilibriums}:
+\begin{center}
+	\includegraphics[scale = 0.5]{ind_market_demand.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+What is the problem with observing these equilibriums?
+\begin{center}
+	\includegraphics[scale = 0.5]{Badsys.pdf}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+It is easy to estimate \emph{supply} when we are trying to estimate demand. Or worse, some weird combination of the two that means nothing. Recall our discussion on bias. If we specify a demand curve as:
+$$q_d = \beta_0 + \beta_1p + \varepsilon$$
+We have substantial feedback between $q$ and $p$, where $p$ affects $q$, and vice versa. This is known as simultaneity, and is a form of endogeneity. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+Estimating demand is not easy, and requires some complex models beyond the scope of this class:
+\begin{itemize}
+	\item Almost-ideal demand system (AIDS) model (Deaton and Muelbauer, 1980)
+	\item Berry, Levinsohn, and Pakes (1993) model
+	\item Instrumental variables and simultaneous equation models (SEMs)
+\end{itemize}
+In the real world, you will use one of the above approaches (or something fancier), so I encourage you to keep going with econometrics! To do something right, you often have to get dirty. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand}
+For now, we are \textbf{going to ignore endogeneity}. We are going to assume it doesn't exist by looking at markets with substantial price variation, and assume that there is no simultaneity. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Law of Demand}
+The law of demand tells us that for normal goods, the demand curve has a negative slope. Why? \\
+We can test the validity of the law of demand with real data.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand Curve}
+Consider the following demand curve for cars. We say the demand curve is $Q = 23,000,000 - 500P$ and inverse demand is $P = 46,000 - 0.002Q$
+\begin{center}
+	\includegraphics[scale = 0.5]{autodemand.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Demand Curve}
+A movement \emph{along} the demand curve is a change in quantity demanded for a change in price, and a movement of the entire curve is a shift in various other non-price variables. For example, a change in the interest rate for a car loan may shift the entire curve.
+\begin{center}
+	\includegraphics[scale = 0.4]{autodemandshifts.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Market}
+Recall that the intersection of supply and demand is the market equilibrium, and at other prices we observe shortages and surpluses.
+\begin{center}
+	\includegraphics[scale = 0.4]{automarket.png}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comparative Statics}
+Comparative statics analysis is the study of the change in equilibrium conditions given a change in supply or demand. To see how changes in demand effect the equilibrium, we hold supply constant and analyze the changes. This is called \textbf{demand analysis}. Vice versa for supply. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comparative Statics: Changing demand}
+\begin{center}
+	\includegraphics[scale = 0.4]{automarketdeldemand.png}
+\end{center} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comparative Statics: Changing supply}
+\begin{center}
+	\includegraphics[scale = 0.4]{automarketdelsupply.png}
+\end{center} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comparative Statics: Changing both}
+\begin{center}
+	\includegraphics[scale = 0.4]{automarketdelboth.png}
+\end{center} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comparative Statics: Changing both}
+Remember how we represent a parallel shift in an estimated curve? We use a dummy variable!
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Elasticity}
+Elasticity is an important measure for managers. It tells us the responsiveness of quantity demanded with respect to a change in price. More generally, it is a measurement of responsiveness of the ``x'' variable to changes in the ``y'' variable. With an estimated relationship between two objects, we can find their elasticity. With elasticities, we can answer many questions:
+\begin{itemize}
+	\item It is 5:01pm in New York City. Will Uber revenues rise or fall if they increase the base fare?
+	\item What can we expect the price of corn to be if exports decrease and the domestic market is flooded?
+	\item United Airlines is thinking about increasing ticket prices for weekend trips to warm locations in the winter. By how much can United expect revenues to rise or fall?
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Elasticity}
+Formally, elasticity is:
+$$\epsilon_{y,x} = \frac{\%\Delta y}{\%\Delta x}= \frac{dy/y}{dx/x}=\frac{dy}{dx}\cdot\frac{x}{y}$$
+In previous classes, you may have calculated $\frac{dy}{dx}$ directly (rise over run). This is fine for linear functions, and equivalent to the above approach taking derivatives. However, if the function is nonlinear, the old approach becomes an \emph{approximation}, and the derivative approach remains consistent. When profits are on the line, we like consistent estimates. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Elasticity}
+Old approach:
+$$ \frac{(y_{new} - y_{old})/y_{old}}{(x_{new} - x_{old})/x_{old}}=\frac{(y_{new} - y_{old})}{(x_{new} - x_{old})}\cdot\frac{x_{old}}{y_{old}}$$
+New approach:
+$$ \frac{dy/y}{dx/x}=\frac{dy}{dx}\cdot\frac{x}{y}$$ 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Elasticity}
+Types of elasticities:
+\begin{itemize}
+	\item Own-price
+	\item Cross-price
+	\item Income
+	\item Recreational behavior to sunlight
+	\item Angling intensity to water clarity
+	\item Many many more
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
+\begin{frame}{Own-price elasticity}
+Recall the following terminology:
+\begin{itemize}
+	\item $|\epsilon_{q,p}|>1 \Rightarrow$ demand is \textbf{elastic}: the percent change of q $>$ percent change of p
+	\item $|\epsilon_{q,p}|<1 \Rightarrow$ demand is \textbf{inelastic}: the percent change of q $<$ percent change of p
+	\item $|\epsilon_{q,p}|=1 \Rightarrow$ demand is \textbf{unitary elastic}: the percent change of q $=$ percent change of p
+	\item $|\epsilon_{q,p}|=\infty \Rightarrow$ demand is \textbf{perfectly elastic}: at some price, you will take \emph{any} level of q
+	\item $|\epsilon_{q,p}|=0 \Rightarrow$ demand is \textbf{perfectly inelastic}: at some q, you will take \emph{any} price level
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose you are a manager at Movie Tavern. Suppose you estimate monthly demand for tickets ($q_i$) as a function of the price of a ticket ($p_i$ in dollars), the monthly subscription cost of Netflix ($pN_i$ in dollars), and income ($y_i$ in thousands of dollars):
+$$q_i = 7000 - 5000p_i + 6000pN_i + 150y_i$$
+\begin{enumerate}
+	\item Calculate $\epsilon_{q,p}$, or own-price elasticity in general form
+	\item Assume $p_i = 8$, $pN_i = 10$, and $y_i = 60$. What is the exact own-price elasticity?
+	\item Is demand elastic or inelastic?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Elasticity of linear demand}
+Is elasticity of a linear demand curve constant? No. Remember: $\epsilon_{y,x} = \frac{dy}{dx}\cdot\frac{x}{y}$. Elasticity is a \emph{function} of x and y, so location matters and elasticity is not constant.
+\begin{center}
+	\includegraphics[scale = 0.4]{elasticitylinear.png}
+\end{center} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Revenues and elasticity}
+Remember that if given demand, we can calculate inverse demand (price as a function of quantity). Then, notice that total revenues are: $TR = p\cdot q$, but if we use inverse demand, we see that since price is a function of quantity, $TR = p(q) \cdot q$. Then, we can calculate marginal revenue as the derivative of total revenue:
+$$MR = \frac{\partial TR}{\partial q} = \frac{\partial (p(q)q)}{\partial q} = p'(q)q + p = p(1 + \frac{\partial p}{\partial q}\cdot \frac{q}{p}) = p(1+\frac{1}{\epsilon_{q,p}})$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Revenues and elasticity}
+So we have:
+$$MR = p\bigg(1+\frac{1}{\epsilon_{q,p}}\bigg)$$
+Remember that the law of demand implies $\epsilon_{q,p}<0$. Then if demand is elastic ($|\epsilon_{q,p}|>1$), MR will be positive. If demand is inelastic ($|\epsilon_{q,p}|<1$), MR will be negative.
+
+Why?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Revenues and elasticity}
+Since an increase in price results in a decrease in quantity demanded (thanks again, law of demand!), then when MR is positive, an increase in price will decrease revenues, and when MR is negative, an increase in price will increase revenues. When MR is negative, the increase in price and resulting reduction in demand results in \emph{less negative loss}, which is a good thing. \\
+From a manager's perspective, all of this background work proves the following statement: when demand is elastic, reductions in price will increase revenue, and when demand is inelastic, reductions in price will decrease revenue. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Optimal pricing}
+We can go further. If we know that: $MR = p\bigg(1+\frac{1}{\epsilon_{q,p}}\bigg)$, and (from AGEC 105) the optimal price and quantity for a monopoly is found by setting marginal revenues equal to marginal costs, then:
+$$p^* = \frac{MC}{\bigg(1+\frac{1}{\epsilon_{q,p}}\bigg)}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Suppose the marginal costs to produce a fly-fishing reel are constant at \$25. Suppose demand elasticity is $\epsilon_{q,p} = -2$. What is the optimal price of a fly-fishing reel?
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cross-price elasticity}
+Remember our formula for elasticity in general:
+$$\epsilon_{y,x}=\frac{dy}{dx}\cdot\frac{x}{y}$$
+Then cross-price elasticity (the responsiveness of demand of one good to the price of another) is:
+$$\epsilon_{q_a,p_b}=\frac{dq_a}{dp_b}\cdot\frac{p_b}{q_a}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cross-price elasticity}
+If the quantity demanded of good A increases as a result of a price increase in good B, then the two goods are \textbf{substitutes}, and $\epsilon_{q_a,p_b}>0$.
+
+If the quantity demanded of good A decreases as a result of a price increase in good B, then the two goods are \textbf{complements}, and $\epsilon_{q_a,p_b}<0$.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cross-price elasticity}
+Substitutes: red bell peppers and green bell peppers, onions and shallots, raspberries and blackberries 
+
+Complements: peanut butter and jelly, yogurt and granola, Aggie polo and light blue jeans (apparently)
+
+Compliment: ``You are great and I'm really proud of the work you've done so far''
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Income elasticity}
+Remember our formula for elasticity in general:
+$$\epsilon_{y,x}=\frac{dy}{dx}\cdot\frac{x}{y}$$
+Then income elasticity (the responsiveness of demand of one good to the income of an individual) is:
+$$\epsilon_{q,inc}=\frac{dq}{dinc}\cdot\frac{inc}{q}$$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Income elasticity}
+\begin{itemize}
+	\item If $0<\epsilon_{q,inc}<1$, the good is a \textbf{necessary good}
+	\item If $\epsilon_{q,inc}>1$, the good is a \textbf{luxury good}
+	\item If $\epsilon_{q,inc}<0$, the good is an \textbf{inferior good}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Income elasticity}
+\begin{itemize}
+	\item Necessary goods: insulin, water, etc
+	\item Luxury goods: phone cases, subscription services, etc
+	\item Inferior goods: bologna
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Assume the own-price elasticity of Rudy's BBQ is $\epsilon_{q_r,p_r} = -1.5$, the cross-price elasticity of Rudy's BBQ to the price of Fargo's is $\epsilon_{q_r, p_f} = 1.2$, and the income elasticity of Rudy's is $\epsilon_{q_r,inc} = 0.01$.
+\begin{enumerate}
+	\item Interpret each elasticity
+	\item Is demand for Rudy's elastic or inelastic?
+	\item If the manager of Rudy's is thinking of changing the price of BBQ, should she increase or decrease the price?
+	\item Is Fargo's a substitute or complement for Rudy's?
+	\item What kind of good is Rudy's BBQ? Do you believe that?
+\end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Empirical estimation}
+In the real world, demand curves are not handed to us. In the next part of this class, we will look at how to \emph{estimate} demand. Once we estimate demand, we can calculate various elasticities. Let's talk about how to calculate elasticity from the following four model types:
+\begin{itemize}
+	\item Linear-linear models
+	\item Linear-log models
+	\item Log-linear models
+	\item Log-log models
+\end{itemize}
+Always remember that: $\epsilon_{y,x}=\frac{dy}{dx}\cdot\frac{x}{y}$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear-linear models}
+$$q_1 = \alpha + \beta_1p_1 + \beta_2p_2 + \phi inc + \varepsilon $$
+\begin{itemize}
+	\item Own-price: $\epsilon_{q_1,p_1}=\frac{dq_1}{dp_1}\cdot\frac{p_1}{q_1} = \beta_1\cdot \frac{p_1}{q_1}$
+	\item Cross-price: $\epsilon_{q_1,p_2}=\frac{dq_1}{dp_2}\cdot\frac{p_2}{q_1} = \beta_2\cdot \frac{p_2}{q_1}$
+	\item Income: $\epsilon_{q_1,inc}=\frac{dq_1}{dinc}\cdot\frac{inc}{q_1} = \phi\cdot \frac{inc}{q_1}$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Linear-log models}
+$$q_1 = \alpha + \beta_1ln(p_1) + \beta_2ln(p_2) + \phi ln(inc) + \varepsilon $$
+\begin{itemize}
+	\item Own-price: $\epsilon_{q_1,p_1}=\frac{dq_1}{dp_1}\cdot\frac{p_1}{q_1} = \frac{\beta_1}{q_1}$
+	\item Cross-price: $\epsilon_{q_1,p_2}=\frac{dq_1}{dp_2}\cdot\frac{p_2}{q_1} = \frac{\beta_2}{q_1}$
+	\item Income: $\epsilon_{q_1,inc}=\frac{dq_1}{dinc}\cdot\frac{inc}{q_1} = \frac{\phi}{q_1}$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Log-linear models}
+$$ln(q_1) = \alpha + \beta_1p_1 + \beta_2p_2 + \phi inc + \varepsilon $$
+\begin{itemize}
+	\item Own-price: $\epsilon_{q_1,p_1}=\frac{dq_1}{dp_1}\cdot\frac{p_1}{q_1} = \beta_1\cdot p_1$
+	\item Cross-price: $\epsilon_{q_1,p_2}=\frac{dq_1}{dp_2}\cdot\frac{p_2}{q_1} = \beta_2\cdot p_2$
+	\item Income: $\epsilon_{q_1,inc}=\frac{dq_1}{dinc}\cdot\frac{inc}{q_1} = \phi\cdot inc$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Log-log models}
+$$ln(q_1) = \alpha + \beta_1ln(p_1) + \beta_2ln(p_2) + \phi ln(inc) + \varepsilon $$
+\begin{itemize}
+	\item Own-price: $\epsilon_{q_1,p_1}=\frac{dq_1}{dp_1}\cdot\frac{p_1}{q_1} = \beta_1$
+	\item Cross-price: $\epsilon_{q_1,p_2}=\frac{dq_1}{dp_2}\cdot\frac{p_2}{q_1} = \beta_2$
+	\item Income: $\epsilon_{q_1,inc}=\frac{dq_1}{dinc}\cdot\frac{inc}{q_1} = \phi$
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Back to reality}
+The model we are about to estimate will most likely suffer from bias. The tools we need to get around that bias are pretty advanced, but we can still learn a lot from the results from the more advanced models. Here is some results from Hausman et al (1994) on the light beer segment:
+\\(Next page)
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Back to reality}
+\begin{center}
+	\includegraphics[scale = 0.3]{hausman.png}
+\end{center} 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Example}
+Let's estimate a demand system for apple juice...
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
