@@ -8,7 +8,7 @@ Feel free to clone the repo and use the materials for yourself. If you are using
 Texas A\&M University has moved to online instruction due to the rapid spread of SARS-CoV-2. See the original syllabus for the traditional course structure. The new syllabus has also been added to reflect the new course structure in an online format. You can watch Lecture videos for modules 6 - 8 on my [YouTube channel](https://www.youtube.com/channel/UCxDNlrqcNZ4c3yS8IN_aC7A).
 
 ## Syllabus
-Please see the [syllabus](https://github.com/econ-by-mb/agec317/blob/master/Course%20Information/Syllabus.pdf) for details on the course outline and structure.
+Please see the [original syllabus](https://github.com/econ-by-mb/agec317/blob/master/Course%20Information/Syllabus.pdf) for details on the intended course outline and structure, and the [new syllabus](https://github.com/econ-by-mb/agec317/blob/master/Course%20Information/Syllabus%20after%20COVID-19.pdf) for details on the course after moving to an online format.
 
 ## Lectures
 As module lectures are developed, they will appear here:
@@ -20,6 +20,7 @@ As module lectures are developed, they will appear here:
 * Module 5: [Model Specifications](https://github.com/econ-by-mb/agec317/blob/master/Module%205%20-%20Model%20Specifications/Model%20Specifications.pdf)
 * Module 6: [Applied Production Economcis](https://github.com/econ-by-mb/agec317/blob/master/Module%206%20-%20Production%20Economics/Production%20Economics.pdf)
 * Module 7: [Applied Demand Analysis](https://github.com/econ-by-mb/agec317/blob/master/Module%207%20-%20Demand%20Analysis/Demand%20Analysis.pdf)
+* Module 8: [Personal Finance and Forecasting](https://github.com/econ-by-mb/agec317/blob/master/Module%208%20-%20Personal%20Finance%20and%20Forecasting/Personal%20Finance%20and%20Forecasting.pdf)
 
 ## Problem Sets
 As module problem sets are developed, they will appear here. If you are an instructor and would like the answer keys, please [contact me](mailto:black.michael@tamu.edu).
