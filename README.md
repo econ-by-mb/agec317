@@ -20,7 +20,7 @@ As module lectures are developed, they will appear here:
 * Module 3: [Linear regression](https://github.com/econ-by-mb/agec317/blob/master/Module%203%20-%20Linear%20Regression/Linear%20Regression.pdf)
 * Module 4: [Multiple regression](https://github.com/econ-by-mb/agec317/blob/master/Module%204%20-%20Multiple%20Regression/Multiple%20Regression.pdf)
 * Module 5: [Model Specifications](https://github.com/econ-by-mb/agec317/blob/master/Module%205%20-%20Model%20Specifications/Model%20Specifications.pdf)
-* Module 6: [Applied Production Economcis](https://github.com/econ-by-mb/agec317/blob/master/Module%206%20-%20Production%20Economics/Production%20Economics.pdf)
+* Module 6: [Applied Production Economics](https://github.com/econ-by-mb/agec317/blob/master/Module%206%20-%20Production%20Economics/Production%20Economics.pdf)
 * Module 7: [Applied Demand Analysis](https://github.com/econ-by-mb/agec317/blob/master/Module%207%20-%20Demand%20Analysis/Demand%20Analysis.pdf)
 * Module 8: [Personal Finance and Forecasting](https://github.com/econ-by-mb/agec317/blob/master/Module%208%20-%20Personal%20Finance%20and%20Forecasting/Personal%20Finance%20and%20Forecasting.pdf)
 
@@ -33,4 +33,4 @@ As module problem sets are developed, they will appear here. If you are an instr
 * Problem Set 5: [Model Specifications](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS5.pdf)
 * Problem Set 6: [Applied Production Economics](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS6.pdf)
 * Problem Set 7: [Applied Demand Analysis](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS7.pdf)
-* Problem Set 7: [Applied Demand Analysis](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS8.pdf)
+* Problem Set 8: [Personal Finance and Forecasting](https://github.com/econ-by-mb/agec317/blob/master/Problem%20Sets/PS8.pdf)
